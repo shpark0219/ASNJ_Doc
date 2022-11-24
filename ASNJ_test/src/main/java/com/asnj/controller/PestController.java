@@ -19,7 +19,7 @@ public class PestController {
 	public ModelAndView Test() {
 		ModelAndView mav = new ModelAndView();
 
-		String url = "http://127.0.0.1:5000/toASNJ";
+		String url = "http://127.0.0.1:1234/toASNJ";
 		String sb = "";
 		try {
 			HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();

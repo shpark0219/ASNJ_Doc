@@ -33,6 +33,16 @@
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
+		<!-- 파일 업로드를 위한 설정 -->
+		<multipart-config>
+		    <!-- 파일 용량 사이즈 정의 : 2메가로 지정함 -->
+		    <max-file-size>20971520</max-file-size>
+		    <!-- 용량이 적은 것 같다면 뒤에 0 하나 더 붙여서 사용하기 -->
+		    <max-request-size>41943040</max-request-size>
+		    <!-- 파일 사이즈 한계점 지정 -->
+		    <file-size-threshold>20971520</file-size-threshold>    
+		</multipart-config>
 	</servlet>
 
 	<servlet-mapping>

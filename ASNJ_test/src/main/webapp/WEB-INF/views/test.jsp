@@ -15,18 +15,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <script>
+	// 네이버 공유
     function share() {
       var url = encodeURI(encodeURIComponent(myform.url.value));
       var title = encodeURI(myform.title.value);
       var shareURL = "https://share.naver.com/web/shareView?url=" + url + "&title=" + title;
       document.location = shareURL;
     }
-  </script>
+</script>
 <body>
 <div class="container">
   <h2>Flask 연결 test</h2>
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Flask 통신 연결!</button>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -47,27 +48,31 @@
       </div>
       
     </div>
-  </div>
+  </div> 
   <hr>
-  <div class="inputArea">
-   <label for="gdsImg">이미지</label>
-   <input type="file" id="gdsImg" name="file" />
-   <div class="select_img"><img src="" /></div>
-   
-   <script>
-    $("#gdsImg").change(function(){
+	<% String pre = request.getParameter("pre"); %>
+    
+	<form action="http://127.0.0.1:1234/test" method="post" enctype="multipart/form-data">
+		<label for="imgfile">이미지</label>
+		<input type="file" name="imgfile" id="imgfile">
+		<br>
+		<div class="img_view"><img src="" /></div>
+		<input type="submit" value="submit">
+	</form>
+	
+	<script>
+    $("#imgfile").change(function(){
      if(this.files && this.files[0]) {
       var reader = new FileReader;
       reader.onload = function(data) {
-       $(".select_img img").attr("src", data.target.result).width(500);          
+       $(".img_view img").attr("src", data.target.result).width(500);          
       }
       reader.readAsDataURL(this.files[0]);
      }
     });
    </script>
-</div>
-  
-  <hr>
+	<%= pre %>
+	<hr>
   <br>
 	<span>
 		<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
