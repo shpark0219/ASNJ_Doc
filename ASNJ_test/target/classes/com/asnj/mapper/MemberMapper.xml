@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.asnj.mapper.MemberMapper">
+    
+    <!-- 로그인 기능 -->
+    <select id="memberLogin" parameterType="com.asnj.entity.Member" resultType="com.asnj.entity.Member">
+        select * from tb_member where mem_user_id=#{mem_user_id} and mem_user_pw=#{mem_user_pw}
+    </select>
+    
+    <!-- 회원가입 기능 -->
+    <insert id="memberJoin" parameterType="com.asnj.entity.Member">
+        insert into tb_member(mem_user_id, mem_user_pw, mem_user_name, mem_user_email, mem_user_job)
+        values(#{mem_user_id}, #{mem_user_pw}, #{mem_user_name}, #{mem_user_email}, #{mem_user_job})
+    </insert>
+    
+    <!-- 회원 전체 검색 - 회원관리 -->
+    <select id="memberSelect" resultType="com.asnj.entity.Member">
+    	select * from tb_member
+    </select>
+</mapper>
