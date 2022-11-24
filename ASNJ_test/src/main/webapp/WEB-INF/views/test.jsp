@@ -65,13 +65,14 @@
      if(this.files && this.files[0]) {
       var reader = new FileReader;
       reader.onload = function(data) {
-       $(".img_view img").attr("src", data.target.result).width(500);          
+       $(".img_view img").attr("src", data.target.result).width(700);          
       }
       reader.readAsDataURL(this.files[0]);
      }
     });
    </script>
 	<%= pre %>
+	<p>여기에 값이 나옵니다 ${imgtest}</p>
 	<hr>
   <br>
 	<span>
