@@ -40,7 +40,7 @@
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>${test1} <!-- 파라미터를 이런식으로 입력 --></p>
+          <p>${wordtest} <!-- 파라미터를 이런식으로 입력 --></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
@@ -50,8 +50,8 @@
     </div>
   </div> 
   <hr>
-	<% String pre = request.getParameter("pre"); %>
-    
+	<%-- <% String pre = request.getParameter("pre"); %> --%>
+    <% String imgtest = request.getParameter("imgtest"); %>
 	<form action="http://127.0.0.1:1234/test" method="post" enctype="multipart/form-data">
 		<label for="imgfile">이미지</label>
 		<input type="file" name="imgfile" id="imgfile">
@@ -71,8 +71,9 @@
      }
     });
    </script>
-	<%= pre %>
-	<p>여기에 값이 나옵니다 ${imgtest}</p>
+	<%-- <%= pre %> --%>
+	<%= imgtest %>
+	<p>${imgtest}</p>
 	<hr>
   <br>
 	<span>
