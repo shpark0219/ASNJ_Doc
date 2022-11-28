@@ -31,10 +31,40 @@ public class MainController {
 		return "notice";
 	}
 	
+	@GetMapping("/Diary.do")
+	public String Diary() {
+		System.out.print("diary.jsp로 이동\n");
+		return "diary";
+	}
+	
 	@GetMapping("/Prediction.do")
 	public String Prediction() {
 		System.out.print("prediction.jsp로 이동\n");
 		return "prediction";
+	}
+	
+	@GetMapping("/Disease.do")
+	public String Disease() {
+		System.out.print("disease.jsp로 이동\n");
+		return "disease";
+	}
+	
+	@GetMapping("/Pests.do")
+	public String Pests() {
+		System.out.print("pests.jsp로 이동\n");
+		return "pests";
+	}
+	
+	@PostMapping("/PredictionInfoPage.do")
+	public String PredictionInfoPage() {
+		System.out.print("prediction_Info.jsp로 이동\n");
+		return "prediction_Info";
+	}
+	
+	@GetMapping("/UserInfo.do")
+	public String UserInfo() {
+		System.out.print("user_Info.jsp로 이동\n");
+		return "user_Info";
 	}
 	
 	@GetMapping("/Loginpage.do")
@@ -46,12 +76,9 @@ public class MainController {
 	public String Joinpage() {
 		return "join";
 	}
-	
-	@GetMapping("/Memberpage.do")
-	public String Memberpage() {
-		return "membertest";
+	@GetMapping("/Mypage.do")
+	public String Mypage() {
+		return "mypage";
 	}
-	
-
 
 }

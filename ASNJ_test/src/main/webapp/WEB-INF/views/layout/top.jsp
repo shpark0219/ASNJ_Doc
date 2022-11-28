@@ -77,8 +77,7 @@ input:focus::-webkit-input-placeholder {
 </script> -->
 
 <body>
-	<div class="container-xxl bg-white p-0 "
-		style="display: flex; justify-content: space-between; align-items: center;">
+	<div class="container-xxl bg-white p-0" style="display: flex; justify-content: space-between; align-items: center; max-width: none;">
 		<div class="header__logo col-lg-4 pe-lg-5"
 			style="float: left; padding-left: 1rem !important;">
 			<a href="index.jsp"><img src="resources/img/logo/logo.png"></a>

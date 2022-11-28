@@ -43,6 +43,8 @@ function DropFile(dropAreaId, fileListId) {
 		  function previewFile(file) {
 		    console.log(file);
 		    renderFile(file);
+		    console.log(file.name);
+		    document.getElementById('fileName').value = file.name; 
 		  }
 
 		  function renderFile(file) {
@@ -50,10 +52,23 @@ function DropFile(dropAreaId, fileListId) {
 		    reader.readAsDataURL(file);
 		    reader.onloadend = function () {
 		      let img = dropArea.getElementsByClassName("preview")[0];
+//		      console.log(img);
 		      img.src = reader.result;
+		      console.log(img.src);
 		      img.style.display = "block";
 		    };
 		  }
+
+			
+		  // 미리보기 초기화
+		  $('.file').change(renderFile);
+		  $('#reset').on('click',function(){			  
+			  $(".preview").attr('src',"");
+			  $(".preview").css('display','none');
+			  $('.file').val("");
+		  });
+
+		 
 
 		  dropArea.addEventListener("dragenter", highlight, false);
 		  dropArea.addEventListener("dragover", highlight, false);

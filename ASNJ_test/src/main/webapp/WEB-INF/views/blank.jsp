@@ -70,14 +70,17 @@
 
 	<!-- 여기부터 content 시작 -->
 	<div>
-		<jsp:include page="top.jsp" />
+		<jsp:include page="layout/top.jsp" />
 	</div>
-	
+
 	<!-- 카테고리 시작 -->
-	<div class="container-xxl py-5 bg-primary hero-header mb-0" style="padding-top: 2rem !important;
-    padding-bottom: 2rem !important;">
-		<div class="container-xxl position-relative p-0">
-			<nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0" style="bottom: 0px;">
+	<div class="container-xxl py-5 bg-primary hero-header mb-0"
+		style="padding-top: 2rem !important; padding-bottom: 2rem !important; max-width: none;">
+		<div class="container-xxl position-relative p-0"
+			style="margin-right: 0px; max-width: inherit;">
+			<nav
+				class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+				style="bottom: 0px;">
 				<a href="" class="navbar-brand p-0">
 					<h1 class="m-0">
 						<i class="fa me-3"></i>
@@ -89,36 +92,37 @@
 					<span class="fa fa-bars"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<div class="navbar-nav ms-auto py-0">
-						<a href="introduce.jsp" class="nav-item nav-link">사이트 소개</a> <a href="#"
-							class="nav-item nav-link">병해충 예측</a>  
-						<div class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">병해충 정보</a>
-							<div class="dropdown-menu m-0">
-								<a href="team.html" class="dropdown-item">병(病)</a> 
-								<a href="testimonial.html" class="dropdown-item">해충</a> 
-							</div>
+					<a href="${cpath}/Introduce.do" class="nav-item nav-link">사이트
+						소개</a> <a href="${cpath}/Prediction.do" class="nav-item nav-link">병해충
+						예측</a>
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">병해충
+							정보</a>
+						<div class="dropdown-menu m-0">
+							<a href="${cpath}/Disease.do" class="dropdown-item">병(病)</a> 
+							<a href="${cpath}/Pests.do" class="dropdown-item">해충</a>
 						</div>
-						<a href="notice.jsp" class="nav-item nav-link">공지사항</a> 
-						<a href="#"	class="nav-item nav-link">문의사항</a>
-						<a href="#"	class="nav-item nav-link">농업일지</a>
 					</div>
+					<a href="${cpath}/Notice.do" class="nav-item nav-link">커뮤니티</a> 
+					<a href="${cpath}/Mypage.do" class="nav-item nav-link">마이페이지</a> 
+					<a href="${cpath}/UserInfo.do" class="nav-item nav-link">회원정보 관리</a>
 				</div>
-			</nav>
 		</div>
+		</nav>
+	</div>
 	</div>
 	<!-- 카테고리 끝 -->
 
-<!-- 내용 시작 -->
+	<!-- 내용 시작 -->
 
 
-<!-- 내용 끝 -->
+	<!-- 내용 끝 -->
 
 	<!-- 푸터 시작 -->
 	<div>
-		<jsp:include page="bottom.jsp" />
+		<jsp:include page="layout/bottom.jsp" />
 	</div>
-<!-- 푸터 끝 -->
+	<!-- 푸터 끝 -->
 
 </body>
 </html>

@@ -76,7 +76,6 @@
         }
         if(document.getElementById('floatingPassword').value !='' && document.getElementById('floatingPassword2').value!=''){
             if(document.getElementById('floatingPassword').value==document.getElementById('floatingPassword2').value){
-            	/* 모달형식으로 바꿔보기 */
             	window.alert('회원가입 성공');
             	document.getElementById('frm').submit();
             }
@@ -101,7 +100,6 @@
 					<form class="form-inline" action="${cpath}/Loginpage.do" method="post">
 						<div class="form-floating mb-3">
 							<label for="floatingInput">ID</label>
-							<!-- name값 수정하기~ -->
 							<input type="text" class="form-control" name="id" id="mem_user_id" >
 						</div>
 						<div class="form-floating mb-3">
@@ -114,7 +112,7 @@
                             &nbsp;<span id="check"></span>
                         </div>
 						<div class="form-floating mb-3">
-							<label for="floatingText">이름 또는 닉네임</label>
+							<label for="floatingText">닉네임</label>
 							<input type="text" class="form-control" name="floatingText" id="mem_user_name">
 						</div>
 						<div class="form-floating mb-3">
@@ -128,7 +126,7 @@
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="mem_user_job2" id="mem_user_job" value="일반인">
-							<label class="form-check-label" for="mem_user_job"> 일반인 </label>
+							<label class="form-check-label" for="mem_user_job"> 홈가드닝 </label>
 						</div>
 						<br>
 						<button type="submit" class="btn btn-sm btn-success py-3 w-100 mb-4">회원가입</button>
