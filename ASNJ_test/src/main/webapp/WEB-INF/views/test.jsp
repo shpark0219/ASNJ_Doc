@@ -50,7 +50,6 @@
     </div>
   </div> 
   <hr>
-	<%-- <% String pre = request.getParameter("pre"); %> --%>
     <% String imgtest = request.getParameter("imgtest"); %>
 	<form action="http://127.0.0.1:1234/test" method="post" enctype="multipart/form-data">
 		<label for="imgfile">이미지</label>
@@ -71,9 +70,9 @@
      }
     });
    </script>
-	<%-- <%= pre %> --%>
-	<%= imgtest %>
-	<p>${imgtest}</p>
+   <p>이미지 출력 결과 : <%= imgtest %></p>
+	
+	<a href="test.do"><button type="button" class="btn btn-info btn-sm">Flask로 이미지 다시 보내기</button></a>
 	<hr>
   <br>
 	<span>

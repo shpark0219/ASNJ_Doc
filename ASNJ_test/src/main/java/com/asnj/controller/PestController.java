@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping(value="/pest/*")
 public class PestController {
+	
 	// 문자열 받아보기
 	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
 	public ModelAndView Test() {

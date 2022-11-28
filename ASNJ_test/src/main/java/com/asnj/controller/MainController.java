@@ -51,5 +51,7 @@ public class MainController {
 	public String Memberpage() {
 		return "membertest";
 	}
+	
+
 
 }
