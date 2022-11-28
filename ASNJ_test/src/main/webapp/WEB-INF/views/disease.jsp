@@ -155,20 +155,12 @@
 				<div id="NM_THEME_CATE_GROUPS" class="group_category"
 					data-demo-key="default">
 					<div class="list_category_wrap">
-						<select
-							class="form-select form-select-lg bg-white border-1 w-100 py-3 ps-4 pe-1">
-							<option><a href="#" role="tab" class=""
-									aria-selected="false" aria-controls="" data-clk=""
-									data-panel-code="">고추</a></option>
-							<option><a href="#" role="tab" class=""
-									aria-selected="false" aria-controls="" data-clk=""
-									data-panel-code="">오이</a></option>
-							<option><a href="#" role="tab" class=""
-									aria-selected="false" aria-controls="" data-clk=""
-									data-panel-code="">파</a></option>
-							<option><a href="#" role="tab" class=""
-									aria-selected="false" aria-controls="" data-clk=""
-									data-panel-code="">호박</a></option>
+						<select class="form-select form-select-lg bg-white border-1 w-100 py-3 ps-4 pe-1"
+						name="resv_program_type" id="resv_program_type" onchange="typeFn();">
+							<option value="고추">고추</option>
+							<option value="오이">오이</option>
+							<option value="파">파</option>
+							<option value="호박">호박</option>
 						</select>
 					</div>
 				</div>

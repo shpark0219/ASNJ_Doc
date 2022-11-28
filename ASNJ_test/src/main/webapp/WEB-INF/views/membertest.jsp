@@ -32,8 +32,8 @@
     	<tbody>
     	<c:forEach items="${list}" var="list">
  			<tr>
- 				<td>${list.mem_user_id}</td>
-  				<td>${list.mem_user_name}</td>
+ 				<td>${list.mem_user_name}</td>
+  				<td>${list.mem_user_id}</td>
 				<td>${list.mem_user_email}</td>
  				<td>${list.mem_user_job}</td>
  				<td>${list.mem_time}</td>

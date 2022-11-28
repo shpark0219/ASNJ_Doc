@@ -142,10 +142,8 @@
 				<table class="table bg-white" style="overflow-wrap: anywhere; text-align: center;">
 					<thead class="table-success">
 						<tr>
-							<th>등급</th>
 							<th>이름</th>
 							<th>아이디</th>
-							<th>비밀번호</th>
 							<th>이메일</th>
 							<th>가입일자</th>
 							<th>직업</th>
@@ -153,50 +151,17 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${list}" var="list">
 						<tr>
-							<th>관리자</th>
-							<th>송영지</th>
-							<th>MG1</th>
-							<th>*******</th>
-							<th>*******@naver.com</th>
-							<th>0000.00.00</th>
-							<th>취준생</th>
+							<th>${list.mem_user_name}</th>
+							<th>${list.mem_user_id}</th>
+							<th>${list.mem_user_email}</th>
+							<th>${list.mem_time}</th>
+							<th>${list.mem_user_job}</th>
 							<th><button type="button" class="btn-sm btn-success">수정</button>&nbsp;/&nbsp;
 								<button type="button" class="btn-sm btn-danger">삭제</button></th>
 						</tr>
-						<tr>
-							<th>관리자</th>
-							<th>박승현</th>
-							<th>MG2</th>
-							<th>*******</th>
-							<th>*******@naver.com</th>
-							<th>0000.00.00</th>
-							<th>취준생</th>
-							<th><button type="button" class="btn-sm btn-success">수정</button>&nbsp;/&nbsp;
-								<button type="button" class="btn-sm btn-danger">삭제</button></th>
-						</tr>
-						<tr>
-							<th>관리자</th>
-							<th>김도연</th>
-							<th>MG3</th>
-							<th>*******</th>
-							<th>*******@naver.com</th>
-							<th>0000.00.00</th>
-							<th>취준생</th>
-							<th><button type="button" class="btn-sm btn-success">수정</button>&nbsp;/&nbsp;
-								<button type="button" class="btn-sm btn-danger">삭제</button></th>
-						</tr>
-						<tr>
-							<th>관리자</th>
-							<th>김동연</th>
-							<th>MG4</th>
-							<th>*******</th>
-							<th>*******@naver.com</th>
-							<th>0000.00.00</th>
-							<th>취준생</th>
-							<th><button type="button" class="btn-sm btn-success">수정</button>&nbsp;/&nbsp;
-								<button type="button" class="btn-sm btn-danger">삭제</button></th>
-						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			</div>

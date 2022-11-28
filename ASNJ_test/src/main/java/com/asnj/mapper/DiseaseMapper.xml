@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.asnj.mapper.DiseaseMapper">
+    
+    <!-- 질병 정보 페이지 불러오기(작물로 검색) 기능 -->
+    <select id="diseaseSelect" parameterType="com.asnj.entity.Disease" resultType="com.asnj.entity.Disease">
+        select * from tb_disease where disease_crops=#{disease_crops}
+    </select>
+    
+    <!-- 질병 상세 정보 페이지(질병명으로 검색) 불러오기 -->
+    <select id="diseaseinfoSelect" parameterType="com.asnj.entity.Disease" resultType="com.asnj.entity.Disease">
+        select * from tb_disease where disease_name=#{disease_name}
+    </select>
+    
+</mapper>

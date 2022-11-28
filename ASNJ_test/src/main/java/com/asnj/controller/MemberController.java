@@ -23,7 +23,7 @@ public class MemberController {
 	private MemberMapper mapper;
 	
 	// 회원 목록
-	@GetMapping("/Member")
+	@RequestMapping("/Member")
 	public List<Member> MemberAjax() {
 		List<Member> list = mapper.memberSelect();
 		return list;
