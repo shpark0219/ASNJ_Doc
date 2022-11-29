@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.asnj.entity.Disease;
 import com.asnj.entity.Member;
-import com.asnj.mapper.MemberMapper;
+import com.asnj.entity.Question;
+import com.asnj.mapper.AsnjMapper;
 
 @Controller
-public class MainController {
+public class AsnjController {
 	
 	@Autowired
-	private MemberMapper mapper;
+	private AsnjMapper mapper;
 	
 	// 페이지 이동
 	// 메인페이지 -> json 받아오려면 restcontroller 페이지에서 따로 지정해야 함
@@ -57,10 +58,25 @@ public class MainController {
 	}
 	
 	@GetMapping("/Disease.do")
-	public String Disease() {
+	public String Disease(Model model) {
 		System.out.print("disease.jsp로 이동\n");
-		return "disease";
+		List<Disease> crop = mapper.diseasecropSelect();
+		model.addAttribute("crop", crop);
+		return "diseasetest";
 	}
+
+	// 질병 작물 select 옵션에 넣기, 질병 정보 불러오기
+	@GetMapping("/DiseasetestPage.do")
+	public String Disease(Model model, String disease_crops) {
+		System.out.print("disease.jsp로 이동\n");
+		System.out.println(disease_crops);
+		List<Disease> crop = mapper.diseasecropSelect();
+		model.addAttribute("crop", crop);
+		List<Disease> list = mapper.diseaseSelect(disease_crops);
+		model.addAttribute("list", list);
+		return "diseasetest";
+	}	
+	
 	
 	@GetMapping("/Pests.do")
 	public String Pests() {
@@ -95,6 +111,14 @@ public class MainController {
 	@GetMapping("/Mypage.do")
 	public String Mypage() {
 		return "mypage";
+	}
+	
+	// 문의사항
+	@GetMapping("/QuestionList.do")
+	public String QuestionList(Model model) {
+		List<Question> list = mapper.questionSelect();
+		model.addAttribute("list", list);
+		return "question";
 	}
 	
 	// 기능 

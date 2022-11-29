@@ -6,18 +6,45 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.asnj.mapper.AsnjMapper;
+import com.asnj.entity.Disease;
+import com.asnj.entity.Member;
+
+// Ajax 통신을 위해서 사용하는 Controller
 @RestController
-@RequestMapping(value="/pest/*")
-public class PestController {
+public class AsnjRestController {
 	
-	// 문자열 받아보기
+	@Autowired
+	private AsnjMapper mapper;
+	
+	// 회원 목록
+	@RequestMapping(value = "/Member")
+	public List<Member> MemberAjax() {
+		List<Member> list = mapper.memberSelect();
+		return list;
+	}
+	
+	@RequestMapping(value = "/DiseasePage.do", method = RequestMethod.GET)
+	public List<Disease> DiseaseAjax(String vo){
+		List<Disease> list = mapper.diseaseSelect(vo);
+		return list;
+	}
+	
+	// Flask에서 문자열 받아보기
 	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
 	public ModelAndView Test() {
 		ModelAndView mav = new ModelAndView();
@@ -53,6 +80,7 @@ public class PestController {
 		return mav;
 	}
 	
+	// Flask에 이미지 전송 후 문자열 받아보기
 	@RequestMapping(value = "/imgtest.do", method = RequestMethod.GET)
 	public ModelAndView ImgTest() {
 		ModelAndView mav = new ModelAndView();
@@ -88,5 +116,4 @@ public class PestController {
 		return mav;
 
 	}
-	
 }

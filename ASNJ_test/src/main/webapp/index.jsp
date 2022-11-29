@@ -4,7 +4,7 @@
 <c:set var="cpath" value="${pageContext.request.contextPath}" />
 <c:redirect url="Mainpage.do" />
 
-<%-- <c:redirect url="pest/test.do" /> --%>
+<%-- <c:redirect url="test.do" /> --%>
 
 <!DOCTYPE html>
 <html>

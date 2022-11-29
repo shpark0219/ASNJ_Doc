@@ -158,13 +158,12 @@
 				<div id="NM_THEME_CATE_GROUPS" class="group_category"
 					data-demo-key="default">
 					<div class="list_category_wrap">
-					<form action="${cpath}/disease/DiseasetestPage.do" method="get">
+					<form action="${cpath}/DiseasetestPage.do" method="get">
 						<select class="form-select form-select-lg bg-white border-1 w-100 py-3 ps-4 pe-1"
-						name="disease_crop">
-							<option value="고추">고추</option>
-							<option value="오이">오이</option>
-							<option value="파">파</option>
-							<option value="호박">호박</option>
+						name="disease_crops">
+						<c:forEach items="${crop}" var="crop">
+							<option value="${crop.disease_crops}"><c:out value="${crop.disease_crops}"></c:out></option>
+						</c:forEach>
 						</select>
 						<button type="submit">값 보내기</button>
 					</form>
