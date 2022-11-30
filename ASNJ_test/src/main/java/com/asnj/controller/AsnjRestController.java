@@ -40,13 +40,13 @@ public class AsnjRestController {
 		return list;
 	}
 	
-	// ajax 질병 게시판
-	@GetMapping("/disease")
-	public List<Disease> diseaseAjaxList(@RequestParam("disease_crops") String disease_crops){
-		System.out.println(disease_crops);
-		List<Disease> diseasesList = mapper.diseaseSelect(disease_crops);
-		return diseasesList;
-	}
+//	// ajax 질병 게시판
+//	@GetMapping("/disease")
+//	public List<Disease> diseaseAjaxList(@RequestParam("disease_crops") String disease_crops){
+//		System.out.println(disease_crops);
+//		List<Disease> diseasesList = mapper.diseaseSelect(disease_crops);
+//		return diseasesList;
+//	}
 	
 	// Flask에서 문자열 받아보기
 	@RequestMapping(value = "/test.do", method = RequestMethod.GET)

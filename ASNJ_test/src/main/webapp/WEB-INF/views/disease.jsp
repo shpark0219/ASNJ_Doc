@@ -151,21 +151,31 @@
 		<!-- 작물 카테고리 -->
 		<div class="main_category row align-items-center table table-hover" style="text-align: center; width: 80%; margin: auto;">
 			<div class="col col-md-3 p-2 mt-3" style="text-align: end;">
-				<img alt="선택아이콘" src="resources/image/handTouch.png" style="width: 30px; height: 30px; margin-bottom: 10px;">
-				<h4 class="searchTitle" style="display: inline-block;">작물 선택</h4>
+				<!-- 작물 선택 이모디콘 원래 자리 -->
 			</div>
 			<div class="w-25 p-5 col-md-auto flex-fill">
 				<div id="NM_THEME_CATE_GROUPS" class="group_category"
 					data-demo-key="default">
-					<div class="list_category_wrap">
-					<form action="${cpath}/DiseasetestPage.do" method="get">
-						<select class="form-select form-select-lg bg-white border-1 w-100 py-3 ps-4 pe-1"
-						name="disease_crops">
-						<c:forEach items="${crop}" var="crop">
-							<option value="${crop.disease_crops}"><c:out value="${crop.disease_crops}"></c:out></option>
-						</c:forEach>
-						</select>
-						<button type="submit">값 보내기</button>
+					<div class="list_category_wrap ">
+					<form action="${cpath}/DiseaseSelect.do" method="get">
+						<label class="form-check-label" for="고추">고추</label>
+						<input class="form-check-input" type="radio" name="disease_crops" id="고추" value="고추" checked>
+						<label class="form-check-label" for="감">감</label>
+						<input class="form-check-input" type="radio" name="disease_crops" id="감" value="감">
+						<label class="form-check-label" for="딸기">딸기</label>
+						<input class="form-check-input" type="radio" name="disease_crops" id="딸기" value="딸기">
+						<label class="form-check-label" for="오이">오이</label>
+						<input class="form-check-input" type="radio" name="disease_crops" id="오이" value="오이">
+						<label class="form-check-label" for="파">파</label>
+						<input class="form-check-input" type="radio" name="disease_crops" id="파" value="파">
+						<label class="form-check-label" for="호박">호박</label>
+						<input class="form-check-input" type="radio" name="disease_crops" id="호박" value="호박">
+						
+						
+						<button type="submit" class="btn btn-light">
+						<img alt="선택아이콘" src="resources/image/handTouch.png" style="width: 30px; height: 30px; margin-bottom: 10px;">
+						<h4 class="searchTitle" style="display: inline-block;">작물 선택</h4>
+						</button>
 					</form>
 					</div>
 				</div>
@@ -183,8 +193,8 @@
 				
 				<div class="list_theme_wrap">
 					<ul class="list_theme" style="padding-right: 32px;">						
-						<c:forEach items="${list}" var="list">
-						<a href="#" class="theme_thumb">
+						<c:forEach items="${diseaselist}" var="list">
+						<a href="PredictionInfoPage.do?disease_pk=${list.disease_pk}" class="theme_thumb">
 						<li class="theme_item">
 							<img src="${list.disease_imgpath}" alt="" width="170" height="114"/>
 							<strong class="title elss">${list.disease_name}</strong>

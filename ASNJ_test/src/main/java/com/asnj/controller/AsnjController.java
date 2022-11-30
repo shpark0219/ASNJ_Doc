@@ -57,26 +57,28 @@ public class AsnjController {
 		return "prediction";
 	}
 	
+	// 질병 페이지
 	@GetMapping("/Disease.do")
 	public String Disease(Model model, String disease_crops) {
 		System.out.print("disease.jsp로 이동\n");
-		List<Disease> crop = mapper.diseasecropSelect();
-		model.addAttribute("crop", crop);
-		return "diseasetest";
+		List<Disease> diseaselist = mapper.diseaseSelect(disease_crops);
+		model.addAttribute("diseaselist", diseaselist);
+		return "disease";
 	}
 
-	// 질병 작물 select 옵션에 넣기, 질병 정보 불러오기
-	
-	
 	@GetMapping("/Pests.do")
 	public String Pests() {
 		System.out.print("pests.jsp로 이동\n");
 		return "pests";
 	}
 	
-	@PostMapping("/PredictionInfoPage.do")
-	public String PredictionInfoPage() {
+	// 병해충 정보 페이지
+	@GetMapping("/PredictionInfoPage.do")
+	public String PredictionInfoPage(Model model, int disease_pk) {
 		System.out.print("prediction_Info.jsp로 이동\n");
+		List<Disease> diseaseinfo = mapper.diseaseinfoSelect(disease_pk);
+		System.out.println(diseaseinfo.toString());
+		model.addAttribute("diseaseinfo", diseaseinfo);
 		return "prediction_Info";
 	}
 	

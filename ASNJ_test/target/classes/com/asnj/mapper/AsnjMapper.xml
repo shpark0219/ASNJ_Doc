@@ -31,6 +31,6 @@
     
     <!-- 질병 상세 정보 페이지(질병명으로 검색) 불러오기 -->
     <select id="diseaseinfoSelect" parameterType="com.asnj.entity.Disease" resultType="com.asnj.entity.Disease">
-        select * from tb_disease where disease_name=#{disease_name}
+        select * from tb_disease where disease_pk=#{disease_pk}
     </select>
 </mapper>
