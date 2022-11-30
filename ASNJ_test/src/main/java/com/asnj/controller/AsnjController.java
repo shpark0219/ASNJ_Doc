@@ -58,7 +58,7 @@ public class AsnjController {
 	}
 	
 	@GetMapping("/Disease.do")
-	public String Disease(Model model) {
+	public String Disease(Model model, String disease_crops) {
 		System.out.print("disease.jsp로 이동\n");
 		List<Disease> crop = mapper.diseasecropSelect();
 		model.addAttribute("crop", crop);
@@ -66,16 +66,6 @@ public class AsnjController {
 	}
 
 	// 질병 작물 select 옵션에 넣기, 질병 정보 불러오기
-	@GetMapping("/DiseasetestPage.do")
-	public String Disease(Model model, String disease_crops) {
-		System.out.print("disease.jsp로 이동\n");
-		System.out.println(disease_crops);
-		List<Disease> crop = mapper.diseasecropSelect();
-		model.addAttribute("crop", crop);
-		List<Disease> list = mapper.diseaseSelect(disease_crops);
-		model.addAttribute("list", list);
-		return "diseasetest";
-	}	
 	
 	
 	@GetMapping("/Pests.do")

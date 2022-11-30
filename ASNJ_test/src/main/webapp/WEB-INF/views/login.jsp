@@ -43,10 +43,6 @@
 					<a href="index.jsp"><img src="resources/img/logo/logo2.png"></a>
 					<h3 class="text-center">로그인</h3>
 					<br>
-					<%-- if-else 구문으로 이용이 가능 표현식에서 loginMember.memId는 우리가 예전부터 사용했던 (Member)session.getAttribute("loginMember").getMemId()
-						EL식에서 empty는 !=와 같은 의미이다.	--%>
-					<c:choose>
-						<c:when test="${empty loginMember}">
 							<form class="form-inline" action="index.jsp" method="post">
 								<div class="form-floating mb-3">
 									<input type="text" class="form-control" name="mem_user_id" id="floatingInput" placeholder="name@example.com">
@@ -61,17 +57,6 @@
 							<p class="text-center mb-0">
 								Don't have an Account? <a href="${cpath}/Joinpage.do">회원가입</a>
 							</p>
-						</c:when>
-
-						<%-- 로그인 시 --%>
-						<c:otherwise>
-							<div class="form-floating mb-3">
-								<label for="mem_user_pw">${loginMember.mem_user_name}님 어서오세요</label> <a href="${cpath}/Logout.do" class="btn btn-sm btn-outline-success py-3 w-100 mb-4">로그아웃</a>
-								<a href="Mainpage.do" class="btn btn-sm btn-success py-3 w-100 mb-4">메인 페이지</a>
-							</div>
-						</c:otherwise>
-						<%-- 로그인 시 끝 --%>
-					</c:choose>
 				</div>
 			</div>
 		</div>

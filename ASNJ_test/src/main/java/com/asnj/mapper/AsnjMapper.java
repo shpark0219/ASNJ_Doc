@@ -37,6 +37,9 @@ public interface AsnjMapper {
 		
 	// 질병 상세 정보 페이지(질병명으로 검색) 불러오기
 	public List<Disease> diseaseinfoSelect(String disease_crops);
+
+	// ajax 질병 게시판
+	public List<Disease> diseasesList();
 	
 	
 }

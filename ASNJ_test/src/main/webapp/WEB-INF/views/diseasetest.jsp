@@ -47,6 +47,7 @@
 
 <!-- prediction Stylesheet -->
 <link href="resources/css/prediction.css" rel="stylesheet">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 	hr {
 	    background-color: green !important;
@@ -58,6 +59,8 @@
 		list-style: none;	
 	}
 </style>
+<script src="resources/js/disease.js"></script>
+
 </head>
 
 <body>
@@ -158,7 +161,7 @@
 				<div id="NM_THEME_CATE_GROUPS" class="group_category"
 					data-demo-key="default">
 					<div class="list_category_wrap">
-					<form action="${cpath}/DiseasetestPage.do" method="get">
+					<form method="get" id="crops">
 						<select class="form-select form-select-lg bg-white border-1 w-100 py-3 ps-4 pe-1"
 						name="disease_crops">
 						<c:forEach items="${crop}" var="crop">
@@ -174,28 +177,7 @@
 		<hr>
 		<br> <br>
 		<!-- 작물 정보 contents -->
-		<div id="NM_THEME_CONTAINER" class="theme_cont" role="tabpanel"
-			data-panel-code="FINANCE" data-parent-code="">
-			<div class="group_theme" data-block-id=""
-				data-block-code="PC-THEME-FINANCE-MOBILE-RANKING-DEFAULT-0"
-				data-block-type="MATERIALS" data-template-code="MOBILE-RANKING-LIST"
-				data-da="container" data-index="" data-page="1">
-				
-				<div class="list_theme_wrap">
-					<ul class="list_theme" style="padding-right: 32px;">						
-						<c:forEach items="${list}" var="list">
-						<a href="#" class="theme_thumb">
-						<li class="theme_item">
-							<img src="${list.disease_imgpath}" alt="" width="170" height="114"/>
-							<strong class="title elss">${list.disease_name}</strong>
-							<p class="desc">${list.disease_symptom}</p>								
-						</li>
-						</a>
-						<hr>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>		
+		<div class="panel-body" id="list" >작물 질병 정보가 뜹니다.</div>
 
 			<!-- 개별 링크 클릭 코드 -->
 			<div class="group_theme" data-block-id=""

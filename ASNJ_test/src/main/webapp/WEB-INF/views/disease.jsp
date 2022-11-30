@@ -1,3 +1,6 @@
+<%@page import="com.asnj.entity.Disease"%>
+<%@page import="com.asnj.entity.Member"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -155,13 +158,15 @@
 				<div id="NM_THEME_CATE_GROUPS" class="group_category"
 					data-demo-key="default">
 					<div class="list_category_wrap">
+					<form action="${cpath}/DiseasetestPage.do" method="get">
 						<select class="form-select form-select-lg bg-white border-1 w-100 py-3 ps-4 pe-1"
-						name="resv_program_type" id="resv_program_type" onchange="typeFn();">
-							<option value="고추">고추</option>
-							<option value="오이">오이</option>
-							<option value="파">파</option>
-							<option value="호박">호박</option>
+						name="disease_crops">
+						<c:forEach items="${crop}" var="crop">
+							<option value="${crop.disease_crops}"><c:out value="${crop.disease_crops}"></c:out></option>
+						</c:forEach>
 						</select>
+						<button type="submit">값 보내기</button>
+					</form>
 					</div>
 				</div>
 			</div>
@@ -178,16 +183,16 @@
 				
 				<div class="list_theme_wrap">
 					<ul class="list_theme" style="padding-right: 32px;">						
+						<c:forEach items="${list}" var="list">
+						<a href="#" class="theme_thumb">
 						<li class="theme_item">
-							<a href="#" class="theme_thumb">
-							<img src="http://webbuild1.knu.ac.kr/~bskim/image/powd1.jpg" alt="" width="170" height="114"/>
-							<strong class="title elss">흰가루병 (白粉病)</strong>
-							<p class="desc">노지와 하우스재배에서 모두 발생하며 전국적으로 심하게 발생하고 있다. 
-								흰가루병은 그 피해가 직접적으로 잘 나타나지 않기 때문에 재배농가에서는 방제를 소흘히 하는 경향이나
-								초세가 약해져 과실의 착생과 비대가 불량해 진다.</p>								
-						</a>
+							<img src="${list.disease_imgpath}" alt="" width="170" height="114"/>
+							<strong class="title elss">${list.disease_name}</strong>
+							<p class="desc">${list.disease_symptom}</p>								
 						</li>
+						</a>
 						<hr>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>		
@@ -214,6 +219,5 @@
 	<!-- 푸터 끝 -->
 	
 	<!-- js파일 -->
-	<script src="resources/js/disease.js"></script>
 </body>
 </html>

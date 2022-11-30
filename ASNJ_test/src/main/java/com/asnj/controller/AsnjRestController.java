@@ -14,9 +14,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,10 +40,12 @@ public class AsnjRestController {
 		return list;
 	}
 	
-	@RequestMapping(value = "/DiseasePage.do", method = RequestMethod.GET)
-	public List<Disease> DiseaseAjax(String vo){
-		List<Disease> list = mapper.diseaseSelect(vo);
-		return list;
+	// ajax 질병 게시판
+	@GetMapping("/disease")
+	public List<Disease> diseaseAjaxList(@RequestParam("disease_crops") String disease_crops){
+		System.out.println(disease_crops);
+		List<Disease> diseasesList = mapper.diseaseSelect(disease_crops);
+		return diseasesList;
 	}
 	
 	// Flask에서 문자열 받아보기
