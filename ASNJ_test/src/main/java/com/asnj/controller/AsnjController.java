@@ -130,27 +130,25 @@ public class AsnjController {
 			// 2. 세션에 값 저장(회원정보 데이터를 객체 바인딩)
 			session.setAttribute("loginMember", loginMember);
 		}
-		return "redirect:/Loginpage.do";
+		return "main";
 	}
 	
-	// 회원가입 기능 --> 라디오 박스 관련으로 공부해야 함
+	// 회원가입 기능
 	@PostMapping("/Join.do")
 	public String Join(Member mem) {
-		
 		int joinMember = mapper.memberJoin(mem);
-		
 		if(joinMember > 0) {
-			return "redirect:/Mainpage.do";
+			return "main";
 		} else {
 			System.out.println("회원가입 실패!");
-			return "redirect:/Joinpage.do";	
+			return "join";	
 		}
 	}
 	// 로그아웃 기능
 	@RequestMapping("/Logout.do")
 	public String Logout(HttpSession session) {
 		session.removeAttribute("loginMember");
-		return "redirect:/Mainpage.do";
+		return "main";
 	}
 
 }

@@ -57,80 +57,577 @@
 <script src='resources/fullcalendar-5.11.3/lib/main.min.js'></script>
 <script src='resources/js/ko.js'></script>
 
-<!-- 달력 왼쪽 사이트  style -->
-<style>
-.fc-event {
-	margin-top: 5px;
-	cursor: move;
-}
-
-.carousel-inner img {
-  width: 300px;
-  height: 150px;
-  object-fit: cover;
-}
-</style>
-
 <script>
-/* document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar : {
-			left : 'prev,next today', /* 이전, 다음, 오늘 */
-			/* center : 'title',
-			right : 'dayGridMonth,timeGridWeek,timeGridDay' /* 월간, 주간,일간 */
-	/*	},
-      locale : 'ko'
-    })
-    calendar.render();
-  }); */
+document.addEventListener('DOMContentLoaded', function() {
+	var initialLocaleCode = 'en';
+	var localeSelectorEl = document.getElementById('locale-selector');
+	var calendarEl = document.getElementById('calendar');
 
-  var Calendar = null;
-
-	document.addEventListener('DOMContentLoaded', function() {
-		var Calendar = FullCalendar.Calendar;
-		var Draggable = FullCalendar.Draggable;
-
-		var containerEl = document.getElementById('external-events');
-		var calendarEl = document.getElementById('calendar');
-		var checkbox = document.getElementById('drop-remove');
-
-		// initialize the external events
-		// -----------------------------------------------------------------
-
-		new Draggable(containerEl, {
-			itemSelector : '.fc-event',
-			eventData : function(eventEl) {
-				return {
-					title : eventEl.innerText
-				};
-			}
-		});
-
-		// initialize the calendar
-		// -----------------------------------------------------------------
-
-		calendar = new Calendar(calendarEl, {
-			headerToolbar : {
-				left : 'prev,next today', /* 이전, 다음, 오늘 */
-				center : 'title',
-				right : 'dayGridMonth,timeGridWeek,timeGridDay' /* 월간, 주간,일간 */
+	var calendar = new FullCalendar.Calendar(calendarEl, {
+		headerToolbar : {
+			left : 'prev,next today',
+			center : 'title',
+			right : 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+		},
+		locale : initialLocaleCode,
+		buttonIcons : false, // show the prev/next text
+		// weekNumbers: true,
+		navLinks : true, // can click day/week names to navigate views
+		// editable: true,
+		dayMaxEvents : true, // allow "more" link when too many events
+		events : [
+		// 고추 시작 
+			{
+				groupId : 999,
+				title : '[고추]발아기,육모기',
+				start : '2022-01-21',
+				end : '2022-04-01',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]정식기',
+				start : '2022-04-01',
+				end : '2022-05-01',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]]개화기',
+				start : '2022-05-01',
+				end : '2022-04-11',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]온상설치',
+				start : '2022-01-01',
+				end : '2022-02-01',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]품종선책',
+				start : '2022-02-01',
+				end : '2022-03-21',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]정식',
+				start : '2022-03-21',
+				end : '2022-04-21',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]지주설치,유인',
+				start : '2022-04-21',
+				end : '2022-06-01',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]풋고추 수확',
+				start : '2022-06-01',
+				end : '2022-07-01',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]붉은고추 수확',
+				start : '2022-07-01',
+				end : '2022-09-21',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]생산량 및 수량 감소시 연장 재배',
+				start : '2022-09-21',
+				end : '2022-12-11',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]1회웃거름',
+				start : '2022-05-01',
+				end : '2022-06-01',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]2회웃거름',
+				start : '2022-06-01',
+				end : '2022-07-01',
+				backgroundColor : "#4CA975 "
+			}, {
+				groupId : 999,
+				title : '[고추]3회웃거름',
+				start : '2022-07-11',
+				end : '2022-08-11',
+				backgroundColor : "#4CA975 "
 			},
-			editable : true, // 수정가능여부 -- false는 수정 불가능
-			droppable : true, // this allows things to be dropped onto the calendar  캘린더 안으로 드롭할 수 있다. false는 드롭 불가
-			drop : function(info) {
-				// is the "remove after drop" checkbox checked?
-				if (checkbox.checked) {
-					// if so, remove the element from the "Draggable Events" list
-					info.draggedEl.parentNode.removeChild(info.draggedEl);
-				}
+			// 오이
+			{
+				groupId : 998,
+				title : '[오이]발아,육모',
+				start : '2022-10-11',
+				end : '2022-11-21',
+				backgroundColor : "#75D19D"
+			}, {
+				groupId : 998,
+				title : '[오이]생육기',
+				start : '2022-10-11',
+				end : '2023-11-21',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]수확기',
+				start : '2023-02-01',
+				end : '2023-06-01',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]파종',
+				start : '2022-10-11',
+				end : '2022-11-01',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]파종준비',
+				start : '2022-10-21',
+				end : '2022-11-01',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]접목',
+				start : '2022-11-01',
+				end : '2022-11-11',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]접목 묘관리',
+				start : '2022-11-11',
+				end : '2022-11-21',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]정식 후 관리',
+				start : '2022-11-21',
+				end : '2022-12-01',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]정식',
+				start : '2022-12-01',
+				end : '2022-12-11',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]지주세우기, 유인',
+				start : '2022-12-11',
+				end : '2023-02-01',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]유인',
+				start : '2023-02-01',
+				end : '2023-03-11',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]수확',
+				start : '2023-03-11',
+				end : '2023-06-01',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]1회 웃거름',
+				start : '2023-02-01',
+				end : '2023-02-21',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]2회 웃거름',
+				start : '2023-03-01',
+				end : '2023-03-21',
+				backgroundColor : "#75D19D",
+			}, {
+				groupId : 998,
+				title : '[오이]3회 웃거름',
+				start : '2023-04-01',
+				end : '2023-04-21',
+				backgroundColor : "#75D19D"
 			},
-			locale : 'ko'
-		});
 
-		calendar.render();
+			// 파
+			{
+				groupId : 997,
+				title : '[파]춘파재배',
+				start : '2022-01-21',
+				end : '2022-03-21'
+			}, {
+				groupId : 997,
+				title : '[파]묘신장기',
+				start : '2022-04-01',
+				end : '2022-07-01'
+			}, {
+				groupId : 997,
+				title : '[파]엽포(잎집부의)신장기',
+				start : '2022-08-01',
+				end : '2022-11-01'
+			}, {
+				groupId : 997,
+				title : '[파]파종',
+				start : '2022-04-01',
+				end : '2022-04-21'
+			}, {
+				groupId : 997,
+				title : '[파]솎음',
+				start : '2022-05-01',
+				end : '2022-05-21'
+			}, {
+				groupId : 997,
+				title : '[파]솎음',
+				start : '2022-06-01',
+				end : '2022-06-21'
+			}, {
+				groupId : 997,
+				title : '[파]정식',
+				start : '2022-06-21',
+				end : '2022-07-21'
+			}, {
+				groupId : 997,
+				title : '[파]북주기',
+				start : '2022-08-01',
+				end : '2022-10-21'
+			}, {
+				groupId : 997,
+				title : '[파]수확',
+				start : '2022-11-01',
+				end : '2022-12-11'
+			}, {
+				groupId : 997,
+				title : '[파]김매기',
+				start : '2022-05-01',
+				end : '2022-07-01'
+			}, {
+				groupId : 997,
+				title : '[파]1회 웃거름',
+				start : '2022-07-11',
+				end : '2022-08-01'
+			}, {
+				groupId : 997,
+				title : '[파]2회 웃거름',
+				start : '2022-08-01',
+				end : '2022-09-11'
+			}, {
+				groupId : 997,
+				title : '[파]3회 웃거름',
+				start : '2022-09-21',
+				end : '2022-10-11'
+			}, {
+				groupId : 997,
+				title : '[파]추대주솎음,화구절단',
+				start : '2022-02-01',
+				end : '2022-04-01'
+			}, {
+				groupId : 997,
+				title : '[파]짚, 비닐피복',
+				start : '2022-01-01',
+				end : '2022-03-11'
+			}, {
+				groupId : 997,
+				title : '[파]정식',
+				start : '2022-03-11',
+				end : '2022-04-21'
+			}, {
+				groupId : 997,
+				title : '[파]수확',
+				start : '2022-06-01',
+				end : '2022-07-21'
+			}, {
+				groupId : 997,
+				title : '[파]추파재배',
+				start : '2022-08-01',
+				end : '2022-09-21'
+			}, {
+				groupId : 997,
+				title : '[파]파종',
+				start : '2022-09-21',
+				end : '2022-10-21'
+			}, {
+				groupId : 997,
+				title : '[파]짚, 비닐피복',
+				start : '2022-11-21',
+				end : '2023-04-01'
+			},
+
+			// 딸기/사계성여름재배
+			{
+				groupId : 996,
+				title : '[딸기/사계성여름재배]묘 냉장저장',
+				start : '2022-01-01',
+				end : '2022-03-11',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/사계성여름재배]모주정식',
+				start : '2022-03-11',
+				end : '2022-05-01',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/사계성여름재배]자묘증식',
+				start : '2022-06-01',
+				end : '2022-09-20',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/사계성여름재배]묘 냉장저장',
+				start : '2022-10-01',
+				end : '2022-12-01',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/사계성여름재배]육묘기간',
+				start : '2022-03-01',
+				end : '2022-04-01',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/사계성여름재배]정식기간',
+				start : '2022-04-01',
+				end : '2022-05-01',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/사계성여름재배]수확기간',
+				start : '2022-06-01',
+				end : '2022-11-01',
+				backgroundColor : "#FF7493"
+			},
+
+			// 딸기/반촉성재배
+			{
+				groupId : 996,
+				title : '[딸기/반촉성재배]모주정식',
+				start : '2022-03-11',
+				end : '2022-04-21',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/반촉성재배]자묘증식',
+				start : '2022-05-11',
+				end : '2022-08-11',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/반촉성재배]정식',
+				start : '2022-08-21',
+				end : '2022-09-11',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/반촉성재배]보온',
+				start : '2022-10-11',
+				end : '2022-11-21',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/반촉성재배]수확',
+				start : '2022-01-21',
+				end : '2022-05-01',
+				backgroundColor : "#FF7493"
+			},
+
+			// 딸기/촉성재배
+			{
+				groupId : 996,
+				title : '[딸기/촉성재배]모주삽목',
+				start : '2022-09-11',
+				end : '2022-10-11',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]모주전조처리',
+				start : '2022-02-01',
+				end : '2022-03-21',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]모주정식',
+				start : '2022-03-21',
+				end : '2022-04-11',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]자묘정식',
+				start : '2022-05-21',
+				end : '2022-07-21',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]정식',
+				start : '2022-08-01',
+				end : '2022-09-01',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]보온',
+				start : '2022-09-11',
+				end : '2022-10-21',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]전조처리',
+				start : '2022-11-11',
+				end : '2022-12-11',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]수확',
+				start : '2022-01-01',
+				end : '2022-06-11',
+				backgroundColor : "#FF7493"
+			}, {
+				groupId : 996,
+				title : '[딸기/촉성재배]수확개시',
+				start : '2022-10-11',
+				end : '2022-11-11',
+				backgroundColor : "#FF7493"
+			},
+
+			// 호바
+			{
+				groupId : 995,
+				title : '[호박]조숙재배',
+				start : '2022-06-11',
+				end : '2022-08-01',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]파종',
+				start : '2022-02-01',
+				end : '2022-03-01',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]정식',
+				start : '2022-03-11',
+				end : '2022-04-01',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]수확',
+				start : '2022-05-11',
+				end : '2022-08-11',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]멀칭, 터널',
+				start : '2022-03-11',
+				end : '2022-04-11',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]1차 웃거름',
+				start : '2022-04-11',
+				end : '2022-05-01',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]2차 웃거름',
+				start : '2022-05-21',
+				end : '2022-06-11',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]3차 웃거름',
+				start : '2022-07-21',
+				end : '2022-08-01',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]촉성재배',
+				start : '2022-10-11',
+				end : '2022-11-11',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]정식',
+				start : '2022-01-01',
+				end : '2022-02-01',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]수확',
+				start : '2022-03-01',
+				end : '2022-05-11',
+				backgroundColor : "#DC9146"
+			}, {
+				groupId : 995,
+				title : '[호박]파종',
+				start : '2022-01-11',
+				end : '2022-12-11',
+				backgroundColor : "#DC9146"
+			},
+
+			// 호작/늙은호박
+			{
+				groupId : 995,
+				title : '[호박/늙은호박]노지재배',
+				start : '2022-01-01',
+				end : '2022-02-21',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]파종',
+				start : '2022-03-11',
+				end : '2022-04-11',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]정식',
+				start : '2022-04-11',
+				end : '2022-05-21',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]덩굴신장 및 수정',
+				start : '2022-05-21',
+				end : '2022-07-11',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]과실비대 및 성숙',
+				start : '2022-07-11',
+				end : '2022-09-21',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]수확',
+				start : '2022-09-21',
+				end : '2022-11-01',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]멀칭, 터널',
+				start : '2022-04-11',
+				end : '2022-05-21',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]1차 웃거름',
+				start : '2022-06-11',
+				end : '2022-07-01',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]2차 웃거름',
+				start : '2022-07-11',
+				end : '2022-08-01',
+				backgroundColor : "#EF8847"
+			}, {
+				groupId : 995,
+				title : '[호박/늙은호박]3차 웃거름',
+				start : '2022-08-11',
+				end : '2022-09-01',
+				backgroundColor : "#EF8847"
+			} ],
+		locale : 'ko'
 	});
+	calendar.render();
+});
 </script>
 
 </head>
@@ -241,12 +738,13 @@
 	</div>
 	<!-- 이미지 슬라이스 끝 -->
 
-	<!-- 방제력 시작  -->
+<!-- 방제력 시작  -->
 	<div class="container mt-5">
 		<div class="row">
-			<div class="container-xxl bg-white p-0" style="display: flex; justify-content: center; align-items: center;">
+			<div class="container-xxl bg-white p-0"
+				style="display: flex; justify-content: center; align-items: center;">
 				<div class="container-fluid pt-4 px-4">
-					<div style="margin-left:10%;">
+					<div style="margin-left: 10%;">
 						<div class="mx-auto" style="width: 200px;">
 							<div id="underline">
 								<h2>방제력</h2>
@@ -255,57 +753,44 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- 내용 들어갈 곳 -->
 			<!-- 방제력 달력 시작 -->
-				<div class="container" style="background-color: rgb(250, 255, 240); width: 90%; height: 750px; border-radius: 1em; margin-top: 20px;">
-									
-					<!-- 달력 시작 -->
-				<!-- 달력 -->
-				<div style="float: left; width: 70%; background-color: white; margin-top: 20px;">
-					<br>
-					<div id="calendar"></div>
+			<div class="container" width: 100%; height:1150px;  margin-top: 20px;">
+				<div class="container mt-3" style="display: flex; justify-content: center; align-items: center; margin:10px 0;">
+					<ul class="list-group list-group-horizontal">
+					    <li class="list-group-item checkbox-inline" style="background-color: #4CA975 ; color:#fff;">
+					    	<input class='filter' type="checkbox" value="고추" checked> 고추
+					    </li>
+					    <li class="list-group-item checkbox-inline" style="background-color: #75D19D; color:#fff;">
+					    	<input class='filter' type="checkbox" value="오이" checked> 오이
+					    </li>
+					    <li class="list-group-item checkbox-inline" style="background-color: #0099FF; color:#fff;">
+					    	<input class='filter' type="checkbox" value="파" checked> 파
+					    </li>
+					    <li class="list-group-item checkbox-inline" style="background-color: #FF7493; color:#fff;">
+					    	<input class='filter' type="checkbox" value="딸기" checked> 딸기
+					    </li>
+					    <li class="list-group-item checkbox-inline" style="background-color: #DC9146; color:#fff;">
+					    	<input class='filter' type="checkbox" value="호박" checked> 호박
+					    </li>
+					 </ul>
 				</div>
-				<!-- 달력 끝 -->
-				
-				<!-- 사이드바 시작 -->
-				<div id="external-events" style="float: right; width: 30%; padding-left: 20px; margin-top: 100px;">
-					<p>
-						<strong>아래의 내용을 드래그하여 설정해 보세요.</strong>
-						<br>
-						<input type="checkbox" id="drop-remove"> 
-						<label for="drop-remove">드래그 앤 드롭후 제거</label>
-					</p>
 
-					<div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-						<div class="fc-event-main">고추</div>
+				<!-- 방제력 달력 시작 -->
+				<div id="external-events" style="float: right; width: 100%;">
+					<!-- 달력 -->
+					<div style="float: left; width: 100%; height: 100%; background-color: white; margin-top: 10px;"><br>
+						<div id="calendar"></div>
 					</div>
-					<div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-						<div class="fc-event-main">오이</div>
-					</div>
-					<div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-						<div class="fc-event-main">파</div>
-					</div>
-					<div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-						<div class='fc-event-main'>딸기</div>
-					</div>
-					<div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-						<div class="fc-event-main">호박</div>
-					</div>
-					<!-- 저장 버튼 -->
-					<div style="width: 200%; margin-top: 5%;">
-						<button type="submit" class="btn btn-sm btn-success" style="width: 50%;">
-							<span>저장</span>
-						</button>
-					</div>
-					<!-- 저장버튼 끝 -->
-				</div>
-				<!-- 사이드바 끝 -->
-						<!-- 내용 들어갈 곳 끝 -->
+				<!-- 달력 끝 -->
+				</div> 
+			</div>
+			<!-- 방재력 달력 끝 -->
+			<!-- 내용 들어갈 곳 끝 -->
 		</div>
+		<!-- 방제력 끝 -->
 	</div>
-	<!-- 방제력 끝 -->
-</div>
-	
 	<!-- < footer > -->
 	<jsp:include page="layout/bottom.jsp" />
 	<!-- < footer > -->

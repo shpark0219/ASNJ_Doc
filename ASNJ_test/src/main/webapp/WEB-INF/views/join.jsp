@@ -34,8 +34,7 @@
 <!-- Template Stylesheet -->
 <link href="resources/css/style.css" rel="stylesheet">
 </head>
-
-
+<!-- 
 <script>
         function check_pw(){
             var pw = document.getElementById('floatingPassword').value;
@@ -86,7 +85,7 @@
         }
 	}
 </script>
-
+ -->
 
 <body>
 	<div class="container-fluid">
@@ -97,27 +96,22 @@
 					<a href="index.jsp"><img src="resources/img/logo/logo2.png"></a>
 					<h3 class="text-center">회원가입</h3>
 					<br>
-					<form class="form-inline" action="${cpath}/Loginpage.do" method="post">
+					<form class="form-inline" action="${cpath}/Join.do" method="post">
 						<div class="form-floating mb-3">
-							<label for="floatingInput">ID</label>
-							<input type="text" class="form-control" name="id" id="mem_user_id" >
+							<input type="text" class="form-control" name="mem_user_id" id="mem_user_id" >
+							<label for="mem_user_id">ID</label>
 						</div>
 						<div class="form-floating mb-3">
-							<label for="floatingInput">Password (특수문자 포함 6자 이상)</label>
-							<input type="password" class="form-control" name="pw" id="mem_user_pw" onchange="check_pw()">
+							<input type="password" class="form-control" name="mem_user_pw" id="mem_user_pw">
+							<label for="mem_user_pw">Password</label>
 						</div>
 						<div class="form-floating mb-3">
-                            <input type="password" name="pw2" class="form-control" id="mem_user_pw2" onchange="check_pw()">
-                            <label for="floatingPassword">Password Check</label>
-                            &nbsp;<span id="check"></span>
-                        </div>
-						<div class="form-floating mb-3">
-							<label for="floatingText">닉네임</label>
-							<input type="text" class="form-control" name="floatingText" id="mem_user_name">
+							<input type="text" class="form-control" name="mem_user_name" id="mem_user_name">
+							<label for="mem_user_name">닉네임</label>
 						</div>
 						<div class="form-floating mb-3">
-							<label for="mem_user_email">이메일</label>
 							<input type="email" class="form-control" name="mem_user_email" id="mem_user_email">
+							<label for="mem_user_email">이메일</label>
 						</div>
 						<li>사용자</li>
 						<div class="form-check">
@@ -125,7 +119,7 @@
 								<label class="form-check-label" for="mem_user_job"> 농부 </label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="mem_user_job2" id="mem_user_job" value="일반인">
+							<input class="form-check-input" type="radio" name="mem_user_job" id="mem_user_job2" value="홈가드닝">
 							<label class="form-check-label" for="mem_user_job"> 홈가드닝 </label>
 						</div>
 						<br>

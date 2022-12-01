@@ -196,7 +196,6 @@ ul {
 		<div class="container d-inline-flex justify-content-center">
 			<div class="row" style="width: 400px;">
 				<div class="col-sm-4 p-2"> <a href="Prediction.do" style="color: #198754 !important;"><span class="">예측 다시하기</span></a> </div>
-				<div class="col-sm-4 p-2"> <a href="" style="color: #198754 !important;"><span class="">농약정보</span></a> </div>
 				<div class="col-sm-4 p-2"> <a href="Notice.do" style="color: #198754 !important;"><span class="">문의하기</span></a> </div>
 			</div>
 		</div>

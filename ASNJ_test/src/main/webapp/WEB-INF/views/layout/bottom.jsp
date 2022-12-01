@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>GreenHost - Web Hosting HTML Template</title>
+<title>알쓸농잡</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
@@ -46,9 +46,8 @@
 <body>
 
 	<!-- Footer Start -->
-	<div
-		class="container-fluid bg-primary text-white footer mt-5 wow fadeIn"
-		data-wow-delay="0.1s">
+	<div class="container-fluid bg-primary text-white footer mt-3 wow fadeIn"
+		data-wow-delay="0.1s" style="background-color: #6b9f0f !important;">
 		<div class="container py-5 px-lg-5">
 			<div class="row gy-5 gx-4">
 				<!-- <div class="col-12">
@@ -61,21 +60,22 @@
 					</div>
 				</div> -->
 				<div class="col-lg-3 col-md-2">
-					<img alt="" src="resources/image/nong.png"
+					<a href="index.jsp"> 
+						<img alt="" src="resources/image/nong.png"
 						style="float: left; width: 70px; height: 90px;">&nbsp;&nbsp;&nbsp;
-					<h1 class="text-white mb-4"
-						style="font-style: italic; display: inline-block;">
-						알쓸<br>농잡
-					</h1>
-					<!-- <h1 class="text-white mb-4" style="font-style: italic;">농잡</h1>	 -->
+						<h1 class="text-white mb-4"	style="font-style: italic; display: inline-block;">
+							알쓸<br>농잡
+						</h1> <!-- <h1 class="text-white mb-4" style="font-style: italic;">농잡</h1>	 -->
+					</a>
 				</div>
 				<div class="col-lg-4 col-md-3">
 					<div class="row gy-5 g-4">
 						<div class="col-md-8">
 							<h5 class="fw-bold text-white mb-4">About Us</h5>
-							<a class="btn btn-link" href="${cpath}/Introduce.do">사이트소개</a> 
-							<a class="btn btn-link" href="${cpath}/Notice.do">공지사항</a> 
-							<a class="btn btn-link"	href="#">연락처</a> <a class="btn btn-link" href="#">광고문의</a>
+							<a class="btn btn-link" href="${cpath}/Introduce.do">사이트소개</a> <a
+								class="btn btn-link" href="${cpath}/Notice.do">공지사항</a> <a
+								class="btn btn-link" href="#phone">연락처</a> <a class="btn btn-link"
+								href="${cpath}/Notice.do">광고문의</a>
 						</div>
 					</div>
 				</div>
@@ -85,22 +85,22 @@
 						<i class="fa fa-map-marker-alt me-3"></i>소재지 : 전라남도 순천시 석현동 87 5층,
 						스마트인재개발원 순천점
 					</p>
-					<p class="mb-2">
+					<p class="mb-2" id="phone">
 						<i class="fa fa-phone-alt me-3"></i>TEL&nbsp;: 061-754-3501
 					</p>
 					<p class="mb-2">
-						<i class="fa fa-envelope me-3"></i>팀원 :
+						<i class="fa fa-users me-3"></i>팀원 :
 						&nbsp;(팀장)송영지,&nbsp;(팀원)김도연,&nbsp;김동현,&nbsp;박승현
 					</p>
 					<div class="d-flex pt-2">
-						<a class="btn btn-outline-light btn-social" href=""> <i
-							class="fab fa-twitter"></i>
-						</a> <a class="btn btn-outline-light btn-social" href=""> <i
-							class="fab fa-facebook-f"></i>
-						</a> <a class="btn btn-outline-light btn-social" href=""> <i
-							class="fab fa-youtube"></i>
-						</a> <a class="btn btn-outline-light btn-social" href=""> <i
-							class="fab fa-linkedin-in"></i>
+						<a class="btn btn-outline-light btn-social" href=""> 
+							<i class="fab fa-twitter"></i>
+						</a> <a class="btn btn-outline-light btn-social" href=""> 
+							<i class="fab fa-facebook-f"></i>
+						</a> <a class="btn btn-outline-light btn-social" href=""> 
+							<i class="fab fa-youtube"></i>
+						</a> <a class="btn btn-outline-light btn-social" href=""> 
+							<i class="fab fa-linkedin-in"></i>
 						</a>
 					</div>
 				</div>
@@ -121,17 +121,14 @@
 				<div class="row">
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
 						&copy; <a class="border-bottom" href="index.jsp">Alsseulnongjob</a>,
-						All Right Reserved.
-
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a> </br> Distributed By <a class="border-bottom"
-							href="https://themewagon.com" target="_blank">ThemeWagon</a>
+						a useful knowledge of farming...
 					</div>
-					<div class="col-md-6 text-center text-md-end">
-						<div class="footer-menu">
-							<a href="#">회사소개</a> <a href="#">서비스 가이드</a> <a href="#">개인정보보호정책</a>
-							<a href="#">이용약관</a>
+					<div class="container col-md-6 text-center text-md-center">
+						<div class="footer-menu row">
+							<a class="col-sm-2" href="#">회사소개</a> 
+							<a class="col-sm-3" href="#">서비스 가이드</a> 
+							<a class="col-sm-3" href="#" style="font-weight: bolder;">개인정보보호정책</a>
+							<a class="col-sm-2" href="#">이용약관</a>
 						</div>
 					</div>
 				</div>
@@ -146,7 +143,8 @@
 
 	<!-- JavaScript Libraries -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- <script src="resources/lib/wow/wow.min.js"></script> -->
 	<script src="resources/lib/easing/easing.min.js"></script>
 	<script src="resources/lib/waypoints/waypoints.min.js"></script>

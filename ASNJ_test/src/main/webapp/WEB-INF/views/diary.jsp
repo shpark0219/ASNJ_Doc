@@ -36,58 +36,9 @@
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
-<!-- 달력 -->
-<link href='resources/fullcalendar-5.11.3/lib/main.min.css'	rel='stylesheet' />
-<script src='resources/fullcalendar-5.11.3/lib/main.min.js'></script>
-<script src='resources/js/ko.js'></script>
-
-<script src='resources/fullcalendar-5.11.3/lib/locales-all.js'></script>
-<script src='resources/fullcalendar-5.11.3/lib/locales-all.min.js'></script>
-<script src='resources/fullcalendar-5.11.3/lib/main.js'></script>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-	 var Calendar = null;
-	    var calendarEl = document.getElementById('calendar');
 
-	    var calendar = new FullCalendar.Calendar(calendarEl, {
-	      headerToolbar: {
-	        left: 'prev,next today',
-	        center: 'title',
-	        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-	      },
-	      navLinks: true, // can click day/week names to navigate views
-	      selectable: true,
-	      selectMirror: true,
-	      businessHours: true, // display business hours
-	      editable: true,
-	      selectable: true,
-	      select: function(arg) {
-	        var title = prompt('내용을 적으세요.');
-	        if (title) {
-	          calendar.addEvent({
-	            title: title,
-	            start: arg.start,
-	            end: arg.end,
-	            allDay: arg.allDay
-	          })
-	        }
-	        calendar.unselect()
-	      },
-	      eventClick: function(arg) {
-	        if (confirm('삭제하시겠습니까?')) {
-	          arg.event.remove()
-	        }
-	      },
-	      editable: true,
-	      dayMaxEvents: true, // allow "more" link when too many events
-	      locale : 'ko'
-	    });
-
-	    calendar.render();
-	  });
-
-/* 모달 시작 */
+/* 로그인 모달 시작 */
 jQuery(document).ready(function() {
        $('#myModal').show();
 });
@@ -95,7 +46,7 @@ jQuery(document).ready(function() {
 function close_pop(flag) {
     $('#myModal').hide();
 };
-/* 모달 끝 */
+/* 로그인 모달 끝 */
  
 </script>
 </head>
@@ -165,7 +116,7 @@ function close_pop(flag) {
 
 	<!-- 내용 시작 -->
 	<!-- 농업일지 타이틀 -->
-	<div class="container" style="background-color: rgb(250, 255, 250); width: 70%; height: 100px; border-radius: 1em; box-shadow: 3px 3px 3px gray; margin-top: 10px; max-width: none;">
+	<div class="container" style="background-color: rgb(250, 255, 250); width: 62%; height: 100px; border-radius: 1em; box-shadow: 3px 3px 3px gray; margin-top: 10px; max-width: none;">
 		<div>
 			<img src="resources/image/farmicon.png" align=right> 
 			<span align="center"><br>
@@ -178,7 +129,7 @@ function close_pop(flag) {
 	<div class="container">
 		<!-- 농업일지 시작 -->
 		<div class="row">
-			<div class="container"	style="background-color: rgb(250, 255, 240); width: 100%; height: 1000px; border-radius: 1em; margin-top: 5px;">
+			<div class="container" style="width: 100%; height: 1000px; border-radius: 1em; margin: 10px 0;">
 				
 				<!-- 달력 시작 -->
 				<!-- 달력 -->
@@ -187,7 +138,9 @@ function close_pop(flag) {
 					<div id="calendar"></div>
 				</div>
 				<!-- 달력 끝 -->
-				
+				<c:choose>
+				<%-- 로그인 안 했을 때 --%>
+				<c:when test="${empty loginMember}">
 				<!-- 로그인 모달 시작 -->
 				<div class="modal" id="myModal" data-bs-backdrop="static">
 					<div class="modal-dialog modal-lg modal-dialog-centered">
@@ -215,6 +168,8 @@ function close_pop(flag) {
 					</div>
 				</div>
 			</div>
+		</c:when>
+		</c:choose>
 			<!-- 로그인 모달창 끝 -->
 			
 			
@@ -231,4 +186,56 @@ function close_pop(flag) {
 	<!-- 푸터 끝 -->
 
 </body>
+
+<!-- 달력 -->
+<link href='resources/fullcalendar-5.11.3/lib/main.min.css'	rel='stylesheet' />
+<script src='resources/fullcalendar-5.11.3/lib/main.min.js'></script>
+<script src='resources/js/ko.js'></script>
+
+<script src='resources/fullcalendar-5.11.3/lib/locales-all.js'></script>
+<script src='resources/fullcalendar-5.11.3/lib/locales-all.min.js'></script>
+<script src='resources/fullcalendar-5.11.3/lib/main.js'></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	 var Calendar = null;
+	    var calendarEl = document.getElementById('calendar');
+
+	    var calendar = new FullCalendar.Calendar(calendarEl, {
+	      headerToolbar: {
+	        left: 'prev,next today',
+	        center: 'title',
+	        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+	      },
+	      navLinks: true, // can click day/week names to navigate views
+	      selectable: true,
+	      selectMirror: true,
+	      businessHours: true, // display business hours
+	      editable: true,
+	      selectable: true,
+	      select: function(arg) {
+	        var title = prompt('내용을 적으세요.');
+	        if (title) {
+	          calendar.addEvent({
+	            title: title,
+	            start: arg.start,
+	            end: arg.end,
+	            allDay: arg.allDay
+	          })
+	        } 
+	        calendar.unselect()
+	      },
+	      eventClick: function(arg) {
+	        if (confirm('삭제하시겠습니까?')) {
+	          arg.event.remove()
+	        }
+	      },
+	      editable: true,
+	      dayMaxEvents: true, // allow "more" link when too many events
+	      locale : 'ko'
+	    });
+
+	    calendar.render();
+	  });
+</script>
 </html>

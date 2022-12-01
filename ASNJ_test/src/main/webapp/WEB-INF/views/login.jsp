@@ -43,13 +43,13 @@
 					<a href="index.jsp"><img src="resources/img/logo/logo2.png"></a>
 					<h3 class="text-center">로그인</h3>
 					<br>
-							<form class="form-inline" action="index.jsp" method="post">
+							<form class="form-inline" action="Login.do" method="post">
 								<div class="form-floating mb-3">
-									<input type="text" class="form-control" name="mem_user_id" id="floatingInput" placeholder="name@example.com">
+									<input type="text" class="form-control" name="mem_user_id" id="mem_user_id" placeholder="name@example.com">
 									<label for="floatingInput">아이디 </label>
 								</div>
 								<div class="form-floating mb-3">
-									<input type="password" class="form-control" name="mem_user_pw" id="floatingPassword" placeholder="비밀번호를 입력하세요.">
+									<input type="password" class="form-control" name="mem_user_pw" id="mem_user_pw" placeholder="비밀번호를 입력하세요.">
 									<label for="floatingPassword">비밀번호</label>
 								</div>
 									<button type="submit" class="btn btn-sm btn-success py-3 w-100 mb-4">로그인</button>

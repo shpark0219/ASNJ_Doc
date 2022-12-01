@@ -52,8 +52,8 @@
   <hr>
     <% String imgtest = request.getParameter("imgtest"); %>
 	<form action="http://127.0.0.1:1234/test" method="post" enctype="multipart/form-data">
-		<label for="imgfile">이미지</label>
-		<input type="file" name="imgfile" id="imgfile">
+		<label for="file">이미지</label>
+		<input type="file" name="file" id="file">
 		<br>
 		<div class="img_view"><img src="" /></div>
 		<input type="submit" value="submit">
