@@ -124,7 +124,7 @@
 			<div style="margin-left: 10%;">
 				<div class="mx-auto" style="width: 500px;">
 					<div id="underline">
-						<h3>홍길동님 마이페이지</h3>
+						<h3>${loginMember.mem_user_name}님 마이페이지</h3>
 					</div>
 				</div>
 			</div>	
@@ -136,10 +136,15 @@
 			<div class="container-xxl bg-white" style="display: flex; justify-content: center; align-items: center;">
 				<div class="container-fluid pt-4 px-4">
 					<ul class="nav nav-tabs nav-justified nav-pills nav-fill">
-						<li class="nav-item"><a class="nav-link active"
-							data-bs-toggle="tab" href="#info"><h4>개인정보</h4></a></li>
-						<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-							href="#actlist"><h4>활동내역</h4></a></li>
+						<li class="nav-item">
+							<a class="nav-link active"	data-bs-toggle="tab" href="#info">
+								<h4>개인정보</h4></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-bs-toggle="tab" href="#actlist">
+								<h4>활동내역</h4>
+							</a>
+						</li>
 					</ul>
 					<div class="tab-content">
 						<!-- 개인정보 시작 -->
@@ -149,56 +154,70 @@
 								<table class="table table-bordered caption-top"	style="vertical-align: middle;">
 									<thead class="table table-light">
 										<th>아이디</th>
-										<th>abcd</th>
+										<th>${loginMember.mem_user_id}</th> <!-- 아이디값 받을 곳 -->
 									</thead>
 									<tbody>
 										<!-- 닉네임  -->
 										<tr>
 											<td>닉네임</td>
-											<td>홍길동</td>
+											<td>${loginMember.mem_user_name}</td>
 										</tr>
 										<!-- 수정할 닉네임  -->
 										<tr>
 											<td>수정할 닉네임</td>
-											<td class="input-group">
-												<input type="text" class="form-control" placeholder="수정할 닉네임"	aria-label="Recipient's username1" aria-describedby="button-addon1">
-												<button class="btn btn-success" type="submit" id="button-addon1">수정하기</button></td>
+											<td>
+												<input type="text" name="mem_user_name" value="${loginMember.mem_user_name}" class="form-control" placeholder="수정할 닉네임을 적어주세요" aria-label="Recipient's username1" aria-describedby="button-addon1">
+												<!-- <button class="btn btn-success" type="submit" id="button-addon1">수정하기</button></td> -->
 										</tr>
 										<!-- 비밀번호  -->
 										<tr>
 											<td>비밀번호</td>
-											<td>ㅇㅇㅇㅇㅇ*</td>
+											<td>${loginMember.mem_user_pw}</td>
 										</tr>
 										<!-- 수정할 비밀번호 -->
 										<tr>
 											<td>수정할 비밀번호</td>
-											<td><input type="text" class="form-control"	placeholder="수정할 비밀번호" aria-label="Recipient's username2" aria-describedby="button-addon2"></td>
+											<td><input type="text" name="mem_user_pw" value="${loginMember.mem_user_pw}" class="form-control" placeholder="수정할 비밀번호를 적어주세요" aria-label="Recipient's username2" aria-describedby="button-addon2"></td>
 										</tr>
-										<!-- 비밀번호 재확인 -->
+										<%--<!-- 비밀번호 재확인 -->
 										<tr>
 											<td>비밀번호 재확인</td>
-											<td class="input-group">
+											<td>
 												<input type="text" class="form-control" placeholder="비밀번호 재확인" aria-label="Recipient's username3" aria-describedby="button-addon3">
-												<button class="btn btn-success" type="submit" id="button-addon3">수정하기</button></td>
-										</tr>
+												<!-- <button class="btn btn-success" type="submit" id="button-addon3">수정하기</button></td> -->
+										</tr> --%>
 										<!-- 사용자 -->
 										<tr>
 											<td>사용자</td>
 											<td>
+											<c:choose>
+											<c:when test="${loginMember.mem_user_job eq '농부'}">
 												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 
+													<input class="form-check-input" type="radio" name="mem_user_job" id="inlineRadio1" value="농부" checked> 
 													<label class="form-check-label"	for="inlineRadio1">농부</label>
 												</div>
 												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+													<input class="form-check-input" type="radio" name="mem_user_job" id="inlineRadio2" value="홈가드닝">
 													<label class="form-check-label"	for="inlineRadio2">홈가드닝</label>
 												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="mem_user_job" id="inlineRadio1" value="농부"> 
+													<label class="form-check-label"	for="inlineRadio1">농부</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="mem_user_job" id="inlineRadio2" value="홈가드닝" checked>
+													<label class="form-check-label"	for="inlineRadio2">홈가드닝</label>
+												</div>
+											</c:otherwise>
+											</c:choose>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 								<!-- send -->
-								<div style="justify-content: center; margin-left: 30%;">
+								<div style="justify-content: center; margin-left: 40%;">
 									<button class="btn btn-success" style="width:100px; " type="submit" id="button-addon4">저장</button>
 									&nbsp; &nbsp;
 									<button class="btn btn-success" type="submit" id="button-addon5">회원탈퇴</button>
@@ -246,8 +265,6 @@
 												      </a>
 												    </li>
 												    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-												    <li class="page-item"><a class="page-link" href="#">2</a></li>
-												    <li class="page-item"><a class="page-link" href="#">3</a></li>
 												    <li class="page-item">
 												      <a class="page-link" href="#" aria-label="Next">
 												        <span aria-hidden="true">&raquo;</span>
@@ -293,8 +310,6 @@
 											      </a>
 											    </li>
 											    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-											    <li class="page-item"><a class="page-link" href="#">2</a></li>
-											    <li class="page-item"><a class="page-link" href="#">3</a></li>
 											    <li class="page-item">
 											      <a class="page-link" href="#" aria-label="Next">
 											        <span aria-hidden="true">&raquo;</span>

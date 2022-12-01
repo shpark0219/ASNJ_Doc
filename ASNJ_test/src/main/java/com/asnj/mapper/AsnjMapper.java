@@ -29,6 +29,9 @@ public interface AsnjMapper {
 	// 문의사항 게시판
 	public List<Question> questionSelect();
 	
+	// 문의사항 등록
+	public void questionInsert(Question vo);
+	
 	// select 태그에 작물 넣기
 	public List<Disease> diseasecropSelect();
 	

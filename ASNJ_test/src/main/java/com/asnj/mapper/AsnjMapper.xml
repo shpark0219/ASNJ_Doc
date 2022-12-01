@@ -33,4 +33,17 @@
     <select id="diseaseinfoSelect" parameterType="com.asnj.entity.Disease" resultType="com.asnj.entity.Disease">
         select * from tb_disease where disease_pk=#{disease_pk}
     </select>
+    
+	<!-- 문의사항 조회 -->
+    <select id="questionSelect" parameterType="com.asnj.entity.Question" resultType="com.asnj.entity.Question">
+		select * from tb_question_board order by ques_pk desc
+    </select>
+    
+    <!-- 문의사항 등록 -->
+    <insert id="questionInsert" parameterType="com.asnj.entity.Question">
+        insert into tb_question_board(mem_pk, ques_user_id, ques_title, ques_content) values(#{mem_pk}, #{ques_user_id}, #{ques_title}, #{ques_content})
+    </insert>
+    
+    <!-- 문의사항 삭제 -->
+    
 </mapper>

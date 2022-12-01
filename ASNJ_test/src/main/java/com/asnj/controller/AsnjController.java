@@ -39,12 +39,27 @@ public class AsnjController {
 		return "introduce";
 	}
 	
+	// 커뮤니티(문의사항)
 	@GetMapping("/Notice.do")
-	public String Notice() {
+	public String Notice(Model model) {
 		System.out.print("notice.jsp로 이동\n");
+		List<Question> questionlist = mapper.questionSelect();
+		model.addAttribute("questionlist", questionlist);
+		
 		return "notice";
 	}
+
+	// 문의사항 글쓰기
+	@PostMapping("/QuestionInsert.do")
+	public String QuestionInsert(Model model, Question vo) {
+		mapper.questionInsert(vo);
+		return "redirect:/Notice.do";
+	}
 	
+	// 문의사항 삭제
+	
+	
+	// 농업일지 띄우기
 	@GetMapping("/Diary.do")
 	public String Diary() {
 		System.out.print("diary.jsp로 이동\n");
@@ -105,15 +120,6 @@ public class AsnjController {
 		return "mypage";
 	}
 	
-	// 문의사항
-	@GetMapping("/QuestionList.do")
-	public String QuestionList(Model model) {
-		List<Question> list = mapper.questionSelect();
-		model.addAttribute("list", list);
-		return "question";
-	}
-	
-	// 기능 
 	// 로그인 기능
 	@PostMapping("/Login.do")
 	public String Login(Member mem, HttpServletRequest request) {

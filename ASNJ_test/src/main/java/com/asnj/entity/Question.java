@@ -8,7 +8,6 @@ public class Question {
 	private String ques_title;
 	private String ques_time;
 	private String ques_content;
-	private String ques_img;
 	
 	public int getQues_pk() {
 		return ques_pk;
@@ -46,12 +45,5 @@ public class Question {
 	public void setQues_content(String ques_content) {
 		this.ques_content = ques_content;
 	}
-	public String getQues_img() {
-		return ques_img;
-	}
-	public void setQues_img(String ques_img) {
-		this.ques_img = ques_img;
-	}
-	
 	
 }
