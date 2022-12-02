@@ -86,6 +86,26 @@
 						data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 						<span class="fa fa-bars"></span>
 					</button>
+					<c:choose>
+					<%-- 로그인 안 했을 때 --%>
+					<c:when test="${empty loginMember}">
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<div class="navbar-nav ms-auto py-0">
+							<a href="${cpath}/Introduce.do" class="nav-item nav-link">사이트 소개</a>
+							<a href="${cpath}/Prediction.do" class="nav-item nav-link">병해충	분석</a>
+							<div class="nav-item dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">병해충 정보</a>
+								<div class="dropdown-menu m-0">
+									<a href="${cpath}/Disease.do?disease_crops=고추" class="dropdown-item">병(病) 피해</a>
+									<a href="${cpath}/Pests.do" class="dropdown-item">해충 피해</a>
+								</div>
+							</div>
+							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
+							<a href="${cpath}/Notice.do" class="nav-item nav-link">커뮤니티</a> 
+						</div>
+					</div>
+					</c:when>
+					<c:otherwise>
 					<div class="collapse navbar-collapse" id="navbarCollapse">
 						<div class="navbar-nav ms-auto py-0">
 							<a href="${cpath}/Introduce.do" class="nav-item nav-link active">사이트 소개</a>
@@ -93,16 +113,20 @@
 							<div class="nav-item dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">병해충 정보</a>
 								<div class="dropdown-menu m-0">
-									<a href="${cpath}/Disease.do" class="dropdown-item">병(病) 피해</a>
+									<a href="${cpath}/Disease.do?disease_crops=고추" class="dropdown-item">병(病) 피해</a>
 									<a href="${cpath}/Pests.do" class="dropdown-item">해충 피해</a>
 								</div>
 							</div>
 							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
 							<a href="${cpath}/Notice.do" class="nav-item nav-link">커뮤니티</a> 
-							<a href="${cpath}/Mypage.do" class="nav-item nav-link">마이페이지</a>
+							<a href="${cpath}/Mypage.do?mem_pk=${loginMember.mem_pk}" class="nav-item nav-link">마이페이지</a>
+							<c:if test="${loginMember.mem_user_job eq '관리자'}">
 							<a href="${cpath}/UserInfo.do" class="nav-item nav-link">회원정보 관리</a>
+							</c:if>
 						</div>
 					</div>
+					</c:otherwise>
+					</c:choose>
 				</nav>
 			</div>
 		</div>
@@ -134,26 +158,26 @@
 	<!-- 여기서부터  -->
 		<div class="container-xxl p-0"
 			style="display: flex; justify-content: center; align-items: center;">
-			<div class="row">
-				<div class="col">
+			<div class="row" style="margin-left: 5%">
+				<div class="col-6 col-sm-3">
 					<i class="bi bi-building fa-5x" style="margin-right:100px;"></i>
 					<span id="site_st"></span> 
 				<br> <span>알쓸농잡</span>
 				</div>
 			
-				<div class="col" >
+				<div class="col-6 col-sm-3" >
 				<i class="bi bi-hourglass fa-5x" style="margin-right:80px;"></i>
 					<span id="site_st"></span> 
 				<br><span id="site_font1">최종프로젝트 일자</span> <br> <span id="site_font1">2022년 12월 13일</span>
 				</div>
 			
-				<div class="col" >
+				<div class="col-6 col-sm-3" >
 				<i class="bi bi-people-fill fa-5x" style="margin-right:80px;"></i>
 					<span id="site_st"></span> 
 				<br><span id="site_font1">팀장: 송영지</span> <br> <span id="site_font1">팀원:김도연,김동현,박승현</span>
 				</div>
 			
-				<div class="col">
+				<div class="col-6 col-sm-3">
 					<i class="bi bi-map fa-5x"></i>
 					<br> <span style="margin-left:20px;">소재지</span> <br><span id="site_font1">전라남도 순천시 석현동 87 5층,</span>
 					<br> <span id="site_font1">스마트인재개발원 순천점</span>

@@ -147,7 +147,7 @@
 							<th>이메일</th>
 							<th>가입일자</th>
 							<th>직업</th>
-							<th>수정/삭제</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -158,8 +158,7 @@
 							<th>${list.mem_user_email}</th>
 							<th>${list.mem_time}</th>
 							<th>${list.mem_user_job}</th>
-							<th><button type="button" class="btn-sm btn-success">수정</button>&nbsp;/&nbsp;
-								<button type="button" class="btn-sm btn-danger">삭제</button></th>
+							<th><button type="button" class="btn-sm btn-danger">삭제</button></th>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -168,8 +167,8 @@
 			<!-- 회원정보 테이블 끝 -->
 
 			<div style="justify-content: center; margin-left: 43%;">
-				<button class="btn btn-success" style="width: 100px;" type="submit"
-					id="button-addon4">저장</button>
+				<!-- <button class="btn btn-success" style="width: 100px;" type="submit"
+					id="button-addon4">저장</button> -->
 			</div>
 		</form>
 	</div>

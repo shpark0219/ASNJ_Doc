@@ -18,7 +18,7 @@ public interface AsnjMapper {
 	public int memberJoin(Member mem);
 	
 	// 회원정보 수정
-	public Member memberUpdate(Member mem);
+	public void memberUpdate(Member mem);
 	
 	// 회원 탈퇴 및 회원 삭제
 	public Member memberDelete(Member mem);
@@ -26,8 +26,14 @@ public interface AsnjMapper {
 	// 회원 리스트
 	public List<Member> memberSelect();
 	
+	// 한 명의 회원만 검색하기
+	public Member memberOneSelect(Member mem);
+	
 	// 문의사항 게시판
 	public List<Question> questionSelect();
+	
+	// 마이페이지 문의사항 게시판
+	public List<Question> mypagequestionSelect(Member mem);
 	
 	// 문의사항 등록
 	public void questionInsert(Question vo);

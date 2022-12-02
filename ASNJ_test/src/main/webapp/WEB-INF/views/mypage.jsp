@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="cpath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -93,25 +94,47 @@
 						data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 						<span class="fa fa-bars"></span>
 					</button>
+					<c:choose>
+					<%-- 로그인 안 했을 때 --%>
+					<c:when test="${empty loginMember}">
 					<div class="collapse navbar-collapse" id="navbarCollapse">
 						<div class="navbar-nav ms-auto py-0">
-							<a href="${cpath}/Introduce.do" class="nav-item nav-link">사이트
-								소개</a> <a href="${cpath}/Prediction.do" class="nav-item nav-link">병해충
-								분석</a>
+							<a href="${cpath}/Introduce.do" class="nav-item nav-link">사이트 소개</a>
+							<a href="${cpath}/Prediction.do" class="nav-item nav-link">병해충	분석</a>
 							<div class="nav-item dropdown">
-								<a href="#" class="nav-link dropdown-toggle"
-									data-bs-toggle="dropdown">병해충 정보</a>
+								<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">병해충 정보</a>
 								<div class="dropdown-menu m-0">
-									<a href="${cpath}/Disease.do" class="dropdown-item">병(病) 피해</a>
+									<a href="${cpath}/Disease.do?disease_crops=고추" class="dropdown-item">병(病) 피해</a>
 									<a href="${cpath}/Pests.do" class="dropdown-item">해충 피해</a>
 								</div>
 							</div>
 							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
 							<a href="${cpath}/Notice.do" class="nav-item nav-link">커뮤니티</a> 
-							<a href="${cpath}/Mypage.do" class="nav-item nav-link active">마이페이지</a>
-							<a href="${cpath}/UserInfo.do" class="nav-item nav-link">회원정보 관리</a>
 						</div>
 					</div>
+					</c:when>
+					<c:otherwise>
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<div class="navbar-nav ms-auto py-0">
+							<a href="${cpath}/Introduce.do" class="nav-item nav-link">사이트 소개</a>
+							<a href="${cpath}/Prediction.do" class="nav-item nav-link">병해충	분석</a>
+							<div class="nav-item dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">병해충 정보</a>
+								<div class="dropdown-menu m-0">
+									<a href="${cpath}/Disease.do?disease_crops=고추" class="dropdown-item">병(病) 피해</a>
+									<a href="${cpath}/Pests.do" class="dropdown-item">해충 피해</a>
+								</div>
+							</div>
+							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
+							<a href="${cpath}/Notice.do" class="nav-item nav-link">커뮤니티</a> 
+							<a href="${cpath}/Mypage.do?mem_pk=${loginMember.mem_pk}" class="nav-item nav-link active">마이페이지</a>
+							<c:if test="${loginMember.mem_user_job eq '관리자'}">
+							<a href="${cpath}/UserInfo.do" class="nav-item nav-link">회원정보 관리</a>
+							</c:if>
+						</div>
+					</div>
+					</c:otherwise>
+					</c:choose>
 				</nav>
 			</div>
 		</div>
@@ -150,7 +173,8 @@
 						<!-- 개인정보 시작 -->
 						<div class="container tab-pane active" id="info" >
 							<br>
-							<form action="" style="margin-left: 15%; margin-right: 15%;">
+							<form action="${cpath}/MypageInfo.do" method="post" style="margin-left: 15%; margin-right: 15%;">
+							<input type="hidden" name="mem_pk" value="${loginMember.mem_pk}">
 								<table class="table table-bordered caption-top"	style="vertical-align: middle;">
 									<thead class="table table-light">
 										<th>아이디</th>
@@ -288,17 +312,20 @@
 											<table class="table table-bordered caption-top" style="vertical-align: middle;">
 												<thead class="table table-light" align="center">
 													<th>#</th>
-													<th>제목</th>
+													<th >제목</th>
 													<th>내용</th>
-													<th style="width:100px;">작성날짜</th>
+													<th style="width:110px;">작성날짜</th>
 												</thead>
 												<tbody>
+												<c:forEach items="${myquestionlist}" var="list" varStatus="status">
+												<c:set var="ques_time" value="${fn:split(list.ques_time, ' ')[0]}"/>
 													<tr>
-														<td align="center">1</td>
-														<td>인사</td>
-														<td>안녕하세요</td>
-														<td>2022.11.25</td>
+														<td align="center">${status.count}</td>
+														<td>${list.ques_title}</td>
+														<td>${list.ques_content}</td>
+														<td>${ques_time}</td>
 													</tr>
+												</c:forEach>
 												</tbody>
 											</table>
 											<!-- 페이징 시작 -->

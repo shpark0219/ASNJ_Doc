@@ -19,6 +19,16 @@
     	select * from tb_member
     </select>
     
+    <!-- 회원 정보 수정 -->
+    <update id="memberUpdate" parameterType="com.asnj.entity.Member">
+       update tb_member set mem_user_name=#{mem_user_name}, mem_user_pw=#{mem_user_pw}, mem_user_job=#{mem_user_job} where mem_pk=#{mem_pk}
+    </update>
+    
+    <!-- mypage, 한 회원의 정보만 불러오기 -->
+    <select id="memberOneSelect" parameterType="com.asnj.entity.Member" resultType="com.asnj.entity.Member">
+    	select * from tb_member where mem_pk=#{mem_pk}
+    </select>
+    
     <!-- 질병 작물 불러오기 -->
     <select id="diseasecropSelect" resultType="com.asnj.entity.Disease">
         select distinct disease_crops from tb_disease order by disease_crops
@@ -37,6 +47,11 @@
 	<!-- 문의사항 조회 -->
     <select id="questionSelect" parameterType="com.asnj.entity.Question" resultType="com.asnj.entity.Question">
 		select * from tb_question_board order by ques_pk desc
+    </select>
+    
+    <!-- 마이페이지 문의사항 조회 -->
+    <select id="mypagequestionSelect" parameterType="com.asnj.entity.Question" resultType="com.asnj.entity.Question">
+		select * from tb_question_board where mem_pk=#{mem_pk} order by ques_pk desc
     </select>
     
     <!-- 문의사항 등록 -->

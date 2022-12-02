@@ -115,8 +115,33 @@ public class AsnjController {
 	public String Joinpage() {
 		return "join";
 	}
+	
+	// Mypage.do에 ?mem_pk=${loginMember.mem_pk}제이쿼리 다 추가해야함??? 이건 일단 나중에 진행
 	@GetMapping("/Mypage.do")
-	public String Mypage() {
+	public String Mypage(Model model, Member mem) {
+	//public String Mypage(Member mem, HttpServletRequest request) {
+//		Member loginMember = mapper.memberOneSelect(mem);
+//		HttpSession session = request.getSession();
+//		session.removeAttribute("loginMember");
+//		session.setAttribute("loginMember", loginMember);
+		List<Question> myquestionlist = mapper.mypagequestionSelect(mem);
+		model.addAttribute("myquestionlist", myquestionlist);
+		return "mypage";
+	}
+	
+	// 마이페이지 회원 정보 수정
+	@PostMapping("/MypageInfo.do")
+	public String MypageInfo(Member mem) {
+		mapper.memberUpdate(mem);
+		return "redirect:/Mypage.do";
+	}
+	
+	// 마이페이지 문의사항
+	@GetMapping("/MypageQusetion.do")
+	public String MypageQusetion(Model model, Member mem) {
+		System.out.print("mypage 문의사항으로 이동\n");
+		List<Question> myquestionlist = mapper.mypagequestionSelect(mem);
+		model.addAttribute("myquestionlist", myquestionlist);
 		return "mypage";
 	}
 	
