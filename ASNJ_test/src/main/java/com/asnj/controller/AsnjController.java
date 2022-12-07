@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.asnj.entity.Criteria;
 import com.asnj.entity.Disease;
 import com.asnj.entity.Member;
-import com.asnj.entity.PageMaker;
+import com.asnj.entity.Paging;
 import com.asnj.entity.Pest;
 import com.asnj.entity.Question;
 import com.asnj.mapper.AsnjMapper;
@@ -65,23 +65,32 @@ public class AsnjController {
 		return "notice";
 	}
 	
-	@GetMapping("/NoticePage.do")
-	public ModelAndView openBoardList(Criteria cri) throws Exception {
-        
-	    ModelAndView mav = new ModelAndView("/NoticePage.do");
-	        
-	    PageMaker pageMaker = new PageMaker();
-	    pageMaker.setCri(cri);
-	    pageMaker.setTotalCount(100);
-	        
-	    List<Map<String,Object>> list = mapper.questionPagingSelect(cri);
-	    mav.addObject("list", list);
-	    mav.addObject("pageMaker", pageMaker);
-	        
-	    return mav;
-	        
-	}
+	// 게시물 목록 + 페이징 추가
+	@GetMapping("/QPaging.do")
+	public String getListPage(Model model, @RequestParam("num") int num) throws Exception {
+	 
+	 // 게시물 총 갯수
+	 int count = mapper.questionCount();
+	  
+	 // 한 페이지에 출력할 게시물 갯수
+	 int endnum = 5;
+	  
+	 // 하단 페이징 번호 ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
+	 int pageNum = (int)Math.ceil((double)count/endnum);
+	
+	 // 출력할 게시물
+	 int startnum = (num - 1) * endnum;
 
+	 Paging vo = new Paging();
+	 vo.setStartnum(startnum);
+	 vo.setEndnum(endnum);
+	 
+	 List<Question> list = mapper.questionPagingSelect(vo);
+	 model.addAttribute("questionlist", list);   
+	 model.addAttribute("pageNum", pageNum);
+	 
+	 return "notice";
+	}
 
 	// 문의사항 글쓰기
 	@PostMapping("/QuestionInsert.do")
@@ -129,19 +138,19 @@ public class AsnjController {
 	// 병해충 분석 결과로 이동
 	@GetMapping("/Predictionresult.do")
 	public String Predictionresult(Model model, String result) {
-
+		result = "꽃노랑총채벌레";
 		if(result.equals("정상")) {
 			model.addAttribute("msg", "분석 성공! 결과는 "+result+"입니다.\\n다른 병해충 사진을 업로드 해주세요!");
 			model.addAttribute("url", "Prediction.do");
 			
 		} else if(result.equals("탄저병") || result.equals("흰가루병")) {
 			model.addAttribute("msg", "분석 성공! 결과는 "+result+"입니다.\\n해당 질병 정보 페이지로 이동합니다.");
-//			int disease_pk = mapper.질병기본키검색매퍼만들기;
-			model.addAttribute("url", "PredictionInfoPage.do?disease_pk=63");
+			int disease_pk = mapper.PreDiseasePK(result);
+			model.addAttribute("url", "PredictionInfoPage.do?disease_pk="+disease_pk);
 		} else {
 			model.addAttribute("msg", "분석 성공! 결과는 "+result+"입니다.\\n해당 해충 정보 페이지로 이동합니다.");
-//			int pest_pk = mapper.해충기본키검색매퍼만들기;
-			model.addAttribute("url", "PestInfoPage.do?pest_pk=11");
+			int pest_pk = mapper.PrePestPK(result);
+			model.addAttribute("url", "PestInfoPage.do?pest_pk="+pest_pk);
 		}
 		return "alert";
 	}

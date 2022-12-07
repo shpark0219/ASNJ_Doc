@@ -106,7 +106,7 @@
 								</div>
 							</div>
 							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
-							<a href="${cpath}/Notice.do" class="nav-item nav-link active">커뮤니티</a> 
+							<a href="${cpath}/Notice.do?num=1" class="nav-item nav-link active">커뮤니티</a> 
 						</div>
 					</div>
 					</c:when>
@@ -123,7 +123,7 @@
 								</div>
 							</div>
 							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
-							<a href="${cpath}/Notice.do" class="nav-item nav-link active">커뮤니티</a> 
+							<a href="${cpath}/Notice.do?num=1" class="nav-item nav-link active">커뮤니티</a> 
 							<a href="${cpath}/Mypage.do?mem_pk=${loginMember.mem_pk}" class="nav-item nav-link">마이페이지</a>
 							<c:if test="${loginMember.mem_user_job eq '관리자'}">
 							<a href="${cpath}/UserInfo.do" class="nav-item nav-link">회원정보 관리</a>
@@ -260,7 +260,9 @@
 									<li class="page-item"><a class="page-link" href="#"
 										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 									</a></li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
+									<c:forEach begin="1" end="${pageNum}" var="num">
+									<li class="page-item"><a class="page-link" href="QPaging.do?num=${num}">${num}</a></li>
+									</c:forEach>
 									<li class="page-item"><a class="page-link" href="#"
 										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 									</a></li>

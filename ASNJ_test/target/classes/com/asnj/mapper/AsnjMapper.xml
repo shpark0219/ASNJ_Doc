@@ -49,6 +49,16 @@
         select * from tb_disease where disease_pk=#{disease_pk}
     </select>
     
+    <!-- 분석 후 질병 기본키 불러오기 -->
+    <select id="PreDiseasePK" parameterType="String" resultType="int">
+        select disease_pk from tb_disease where disease_name like concat('%', #{disease_name}, '%') and disease_crops='고추';
+    </select>
+    
+    <!-- 분석 후 질병 기본키 불러오기 -->
+    <select id="PrePestPK" parameterType="String" resultType="int">
+        select pest_pk from tb_pest where pest_name like concat('%', #{pest_name}, '%') and pest_crops='고추';
+    </select>
+    
     <!-- 해충 정보 페이지 불러오기(작물로 검색) 기능 -->
     <select id="pestSelect" parameterType="com.asnj.entity.Pest" resultType="com.asnj.entity.Pest">
         select * from tb_pest where pest_crops=#{pest_crops}
@@ -112,7 +122,7 @@
 	
 	<!-- 페이징 처리 후 게시글 조회 -->
 	<!-- pageStart : 특정 페이지의 첫번째 게시글의 행이다. perPageNum : 한 페이지당 보여줄 게시글의 개수이다. -->
-	<select id="questionPagingSelect" parameterType="hashmap" resultType="hashmap">
-		select * from tb_question_board order by ques_pk desc LIMIT #{pageStart}, #{perPageNum};
+	<select id="questionPagingSelect" parameterType="com.asnj.entity.Paging" resultType="com.asnj.entity.Question">
+		select * from tb_question_board order by ques_pk desc LIMIT  #{startnum}, #{endnum}
 	</select>
 </mapper>
