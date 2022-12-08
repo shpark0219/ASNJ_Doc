@@ -125,7 +125,7 @@
 								</div>
 							</div>
 							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
-							<a href="${cpath}/QPaging.do?num=1" class="nav-item nav-link">커뮤니티</a> 
+							<a href="${cpath}/Notice.do?num=1" class="nav-item nav-link">커뮤니티</a> 
 						</div>
 					</div>
 					</c:when>
@@ -142,7 +142,7 @@
 								</div>
 							</div>
 							<a href="${cpath}/Diary.do" class="nav-item nav-link">농업일지</a> 
-							<a href="${cpath}/QPaging.do?num=1" class="nav-item nav-link">커뮤니티</a> 
+							<a href="${cpath}/Notice.do?num=1" class="nav-item nav-link">커뮤니티</a> 
 							<a href="${cpath}/Mypage.do?mem_pk=${loginMember.mem_pk}" class="nav-item nav-link">마이페이지</a>
 							<c:if test="${loginMember.mem_user_job eq '관리자'}">
 							<a href="${cpath}/UserInfo.do" class="nav-item nav-link">회원정보 관리</a>

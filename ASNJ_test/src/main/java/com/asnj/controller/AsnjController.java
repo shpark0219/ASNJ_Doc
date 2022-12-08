@@ -1,5 +1,6 @@
 package com.asnj.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.asnj.entity.Answer;
 import com.asnj.entity.Disease;
 import com.asnj.entity.Member;
 import com.asnj.entity.Paging;
@@ -45,35 +47,74 @@ public class AsnjController {
 	}
 	
 	// 검색페이지 이동
-	@GetMapping("/SearchView.do")
-	public String SearchView(Model model, String search) {
-		System.out.print("search_View.jsp로 이동\n");
-		List<Disease> diseassearchlist = mapper.diseaseSearch(search);
-		List<Pest> pestsearchlist = mapper.pestSearch(search);
-		model.addAttribute("search", search);
-		model.addAttribute("diseassearchlist", diseassearchlist);
-		model.addAttribute("pestsearchlist", pestsearchlist);
-		return "search_View";
-	}	
+//	@GetMapping("/SearchView.do")
+//	public String SearchView(Model model, String search) {
+//		System.out.print("search_View.jsp로 이동\n");
+//		List<Disease> diseassearchlist = mapper.diseaseSearch(search);
+//		List<Pest> pestsearchlist = mapper.pestSearch(search);
+//		model.addAttribute("search", search);
+//		model.addAttribute("diseassearchlist", diseassearchlist);
+//		model.addAttribute("pestsearchlist", pestsearchlist);
+//		return "search_View";
+//	}
 	
-	// 커뮤니티(문의사항)
-	@GetMapping("/Notice.do")
-	public String Notice(Model model) {
-		System.out.print("notice.jsp로 이동\n");
-		List<Question> questionlist = mapper.questionSelect();
-		model.addAttribute("questionlist", questionlist);
-		return "notice";
+	// 검색페이지 이동 + 페이징 추가
+	@GetMapping("/SearchView.do")
+	public String SearchView(Model model, String search, @RequestParam("num") int num) throws Exception {
+	 // 게시물 총 갯수
+	 int count = mapper.searchCountD(search) + mapper.searchCountP(search);
+	 // 한 페이지에 출력할 게시물 갯수
+	 int endnum = 4;
+	 // 하단 페이징 번호 ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
+	 int pageNum = (int)Math.ceil((double)count/endnum);
+	 // 출력할 게시물
+	 int startnum = (num - 1) * endnum;
+	 Paging vo = new Paging();
+	 vo.setStartnum(startnum);
+	 vo.setEndnum(endnum);
+	 
+	 // vo 파일에 페이지 번호와 검색어 셋팅하기
+	 Disease disease = new Disease();
+	 disease.setStartnum(startnum);
+	 disease.setEndnum(endnum);
+	 disease.setSearch(search);
+	
+	 // vo 파일에 페이지 번호와 검색어 셋팅하기
+	 Pest pest = new Pest();
+	 pest.setStartnum(startnum);
+	 pest.setEndnum(endnum);
+	 pest.setSearch(search);
+	 
+	 List<Disease> diseassearchlist =  mapper.diseasePagingSearch(disease);
+	 List<Pest> pestsearchlist = mapper.pestPagingSearch(pest);
+	 
+	 model.addAttribute("search", search);
+	 model.addAttribute("diseassearchlist", diseassearchlist);
+	 model.addAttribute("pestsearchlist", pestsearchlist);
+	 model.addAttribute("pageNum", pageNum);
+	 model.addAttribute("nownum", num);
+	 
+	 return "search_View";
 	}
 	
+	// 커뮤니티(문의사항)
+//	@GetMapping("/Notice.do")
+//	public String Notice(Model model) {
+//		System.out.print("notice.jsp로 이동\n");
+//		List<Question> questionlist = mapper.questionSelect();
+//		model.addAttribute("questionlist", questionlist);
+//		return "notice";
+//	}
+	
 	// 게시물 목록 + 페이징 추가
-	@GetMapping("/QPaging.do")
-	public String getListPage(Model model, @RequestParam("num") int num) throws Exception {
+	@GetMapping("/Notice.do")
+	public String getListPage(Model model, String key, @RequestParam("num") int num) throws Exception {
 	 
 	 // 게시물 총 갯수
 	 int count = mapper.questionCount();
 	  
 	 // 한 페이지에 출력할 게시물 갯수
-	 int endnum = 5;
+	 int endnum = 4;
 	  
 	 // 하단 페이징 번호 ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
 	 int pageNum = (int)Math.ceil((double)count/endnum);
@@ -86,7 +127,14 @@ public class AsnjController {
 	 vo.setEndnum(endnum);
 	 
 	 List<Question> list = mapper.questionPagingSelect(vo);
+	 
+	 System.out.println();
+	 ArrayList<Answer> answerlist = new ArrayList<Answer>();
+	 for(int i=0; i<list.size(); i++) {
+		 answerlist.add(mapper.answerSelect(list.get(i).getQues_pk()));
+	 }
 	 model.addAttribute("questionlist", list);   
+	 model.addAttribute("answerlist", answerlist); 
 	 model.addAttribute("pageNum", pageNum);
 	 
 	 return "notice";
@@ -120,6 +168,19 @@ public class AsnjController {
 		return "alert";
 	}
 	
+	// 문의사항 답변
+	@PostMapping("/AnswerInsert.do")
+	public String AnswerInsert(Model model, Answer answer) {
+		int confirm = mapper.answerInsert(answer);
+		if(confirm > 0) {
+			model.addAttribute("msg", "문의사항 답변 성공!");
+    		model.addAttribute("url", "Notice.do?num=1");
+		} else {
+			model.addAttribute("msg", "문의사항 답변 실패!\\n오류코드 찾아오세요!");
+    		model.addAttribute("url", "Notice.do?num=1");
+		}
+		return "alert";
+	}
 	
 	// 농업일지 띄우기
 	@GetMapping("/Diary.do")

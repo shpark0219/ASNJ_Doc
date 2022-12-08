@@ -193,7 +193,7 @@ ul {
 					<div class="row list_category_wrap" style="align-items: center;">
 						<div class="mt-5">
 						<c:choose>
-						    <c:when test="${fn:length(diseassearchlist) == 0} && ${fn:length(pestsearchlist) == 0}">
+						    <c:when test="${fn:length(diseassearchlist) == 0 and fn:length(pestsearchlist) == 0}">
 						    <h2>
 							<i class="bi bi-info-circle" style="margin-right: 20px;">
 							</i>&nbsp;"${search}"&nbsp;에 대한 게시글이 없습니다.
@@ -226,26 +226,35 @@ ul {
 					<ul class="list_theme container" style="padding-right: 32px;">
 
 						<li class="theme_item row"><strong class="col-sm-3">
-						<h4>•&nbsp;병(病) 피해</h4></strong></li>
+						<h4>•&nbsp;병해충 피해</h4></strong></li>
 						<hr>
 						<br>
 						<c:choose>
-						    <c:when test="${fn:length(diseassearchlist) == 0}">
+						    <c:when test="${fn:length(diseassearchlist) == 0} && ${fn:length(pestsearchlist) == 0}">
 						        <h5> 빠른 시일 내에 정보를 등록하겠습니다. 죄송합니다.</h5>
 						    </c:when>
 						    <c:otherwise>
 						    	<%-- <h5>총 ${fn:length(diseassearchlist)}개의 게시글이 있습니다.</h5> --%>
-						        <c:forEach items="${diseassearchlist}" var="list">
-						            <a href="PredictionInfoPage.do?disease_pk=${list.disease_pk}"
+						        <c:forEach items="${diseassearchlist}" var="Dlist">
+						            <a href="PredictionInfoPage.do?disease_pk=${Dlist.disease_pk}"
 								class="theme_thumb" style="color: #000">
 								<li class="theme_item row"><img
-									src="${list.disease_imgpath}" alt="" width="auto;"
-									height="250px;" class="col-sm-3" /> <strong
-									class="title elss col-sm-3" style="font-size: large;">${list.disease_name}</strong>
-									<p class="desc col-sm-6" style="font-size: large;">${list.disease_symptom}</p></li>
+									src="${Dlist.disease_imgpath}" alt="" width="auto;"
+									height="250px;" class="col-sm-3" onerror="this.src='resources/image/img.png'"/> <strong
+									class="title elss col-sm-3" style="font-size: large;">${Dlist.disease_name}</strong>
+									<p class="desc col-sm-6" style="font-size: large;">${Dlist.disease_symptom}</p></li>
 							</a>
 							<hr>
 						        </c:forEach>
+						    <c:forEach items="${pestsearchlist}" var="Plist">
+							<a href="PestInfoPage.do?pest_pk=${Plist.pest_pk}" class="theme_thumb" style="color: #000">
+							<li class="theme_item row">
+							<img src="${Plist.pest_imgpath}" alt="" width="auto;" height="250px;" class="col-sm-3" onerror="this.src='resources/image/img.png'"/>
+							<strong class="title elss col-sm-3" style="font-size: large;">${Plist.pest_name}</strong>
+							<p class="desc col-sm-6" style="font-size: large;">${Plist.pest_harm}</p></li>
+							</a>
+							<hr>
+							</c:forEach>
 						    </c:otherwise> 
 						</c:choose>
 						
@@ -253,39 +262,32 @@ ul {
 				</div>
 				<br>
 
-				<div class="group_theme" data-block-id=""
-					data-block-code="PC-THEME-FINANCE-MOBILE-RANKING-DEFAULT-0"
-					data-block-type="MATERIALS"
-					data-template-code="MOBILE-RANKING-LIST" data-da="container"
-					data-index="" data-page="1">
-
-					<div class="list_theme_wrap">
-						<ul class="list_theme container" style="padding-right: 32px;">
-
-							<li class="theme_item row"><strong class="col-sm-3"><h4>•&nbsp;해충
-										피해</h4></strong></li>
-							<hr>
-							<br>
+					<!-- 페이징 시작 -->
+					<nav class=" d-flex justify-content-center"
+						aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link" href="#"
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
 							<c:choose>
-						    <c:when test="${fn:length(pestsearchlist) == 0}">
-						        <h5> 빠른 시일 내에 정보를 등록하겠습니다. 죄송합니다.</h5>
-						    </c:when>
-						    <c:otherwise>
-							<c:forEach items="${pestsearchlist}" var="list">
-							<a href="PestInfoPage.do?pest_pk=${list.pest_pk}"
-								class="theme_thumb" style="color: #000">
-								<li class="theme_item row"><img
-									src="${list.pest_imgpath}" alt="" width="auto;"
-									height="250px;" class="col-sm-3" /> <strong
-									class="title elss col-sm-3" style="font-size: large;">${list.pest_name}</strong>
-									<p class="desc col-sm-6" style="font-size: large;">${list.pest_harm}</p></li>
-							</a>
-							<hr>
-						</c:forEach>
-						</c:otherwise>
-						</c:choose>
+							<c:when test="${fn:length(diseassearchlist) == 0 and fn:length(pestsearchlist) == 0}">
+							<li class="page-item">
+								<a class="page-link" href="#">1</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+							<c:forEach begin="1" end="${pageNum}" var="num">
+								<li class="page-item">
+								<a class="page-link <c:if test="${nownum == num}">active</c:if>" href="SearchView.do?search=${search}&num=${num}">${num}</a></li>
+							</c:forEach>
+							</c:otherwise>
+							</c:choose>
+							<li class="page-item"><a class="page-link" href="#"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
 						</ul>
-					</div>
+					</nav>
+					<!-- 페이징 끝 -->
 					<br>
 
 					<!-- 개별 링크 클릭 코드 -->

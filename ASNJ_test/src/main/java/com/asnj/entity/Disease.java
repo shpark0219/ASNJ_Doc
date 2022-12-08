@@ -19,7 +19,28 @@ public class Disease {
 	private String disease_imginfo4;
 	private String disease_imgpath5;
 	private String disease_imginfo5;
-	
+	private int startnum;
+    private int endnum;
+	private String search;
+    
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public int getStartnum() {
+		return startnum;
+	}
+	public void setStartnum(int startnum) {
+		this.startnum = startnum;
+	}
+	public int getEndnum() {
+		return endnum;
+	}
+	public void setEndnum(int endnum) {
+		this.endnum = endnum;
+	}
 	public int getDisease_pk() {
 		return disease_pk;
 	}

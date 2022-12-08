@@ -51,12 +51,12 @@
     
     <!-- 분석 후 질병 기본키 불러오기 -->
     <select id="PreDiseasePK" parameterType="String" resultType="int">
-        select disease_pk from tb_disease where disease_name like concat('%', #{disease_name}, '%') and disease_crops='고추';
+        select disease_pk from tb_disease where disease_name like concat('%', #{disease_name}, '%') and disease_crops='고추'
     </select>
     
     <!-- 분석 후 질병 기본키 불러오기 -->
     <select id="PrePestPK" parameterType="String" resultType="int">
-        select pest_pk from tb_pest where pest_name like concat('%', #{pest_name}, '%') and pest_crops='고추';
+        select pest_pk from tb_pest where pest_name like concat('%', #{pest_name}, '%') and pest_crops='고추'
     </select>
     
     <!-- 해충 정보 페이지 불러오기(작물로 검색) 기능 -->
@@ -74,6 +74,11 @@
 		select * from tb_question_board order by ques_pk desc
     </select>
     
+    <!-- 문의사항 답변 조회 -->
+    <select id="answerSelect" parameterType="int" resultType="com.asnj.entity.Answer">
+        select * from tb_comment_board where ques_pk=#{ques_pk}
+    </select>
+    
     <!-- 마이페이지 문의사항 조회 -->
     <select id="mypagequestionSelect" parameterType="com.asnj.entity.Question" resultType="com.asnj.entity.Question">
 		select * from tb_question_board where mem_pk=#{mem_pk} order by ques_pk desc
@@ -82,6 +87,11 @@
     <!-- 문의사항 등록 -->
     <insert id="questionInsert" parameterType="com.asnj.entity.Question">
         insert into tb_question_board(mem_pk, ques_user_id, ques_title, ques_content) values(#{mem_pk}, #{ques_user_id}, #{ques_title}, #{ques_content})
+    </insert>
+    
+    <!-- 답변 등록 -->
+    <insert id="answerInsert" parameterType="com.asnj.entity.Answer">
+        insert into tb_comment_board(ques_pk, com_admin_id, com_answer) values(25, 'admin', #{com_answer})
     </insert>
     
     <!-- 회원 삭제시 문의사항 삭제 -->
@@ -124,5 +134,44 @@
 	<!-- pageStart : 특정 페이지의 첫번째 게시글의 행이다. perPageNum : 한 페이지당 보여줄 게시글의 개수이다. -->
 	<select id="questionPagingSelect" parameterType="com.asnj.entity.Paging" resultType="com.asnj.entity.Question">
 		select * from tb_question_board order by ques_pk desc LIMIT  #{startnum}, #{endnum}
+	</select>
+	
+	<!-- 검색 총 게시글 개수 -->
+	<select id="searchCountD" parameterType="String" resultType="int">
+		select count(*) from tb_disease
+		where (disease_crops like concat('%', #{search}, '%')
+		or disease_name like concat('%', #{search}, '%')
+		or disease_environment like concat('%', #{search}, '%')
+		or disease_solution like concat('%', #{search}, '%'))
+	</select>
+	
+	<select id="searchCountP" parameterType="String" resultType="int">
+		select count(*) from tb_pest
+		where (pest_crops like concat('%', #{search}, '%')
+		or pest_name like concat('%', #{search}, '%')
+		or pest_state like concat('%', #{search}, '%')
+		or pest_harm like concat('%', #{search}, '%')
+		or pest_solution like concat('%', #{search}, '%'))
+	</select>	    
+	
+	<!-- 페이징 처리 후 질병 검색 -->
+	<select id="diseasePagingSearch" parameterType="com.asnj.entity.Disease" resultType="com.asnj.entity.Disease">
+		select * from tb_disease
+		where (disease_crops like concat('%', #{search}, '%')
+		or disease_name like concat('%', #{search}, '%')
+		or disease_environment like concat('%', #{search}, '%')
+		or disease_solution like concat('%', #{search}, '%'))
+		order by disease_pk desc LIMIT  #{startnum}, #{endnum}
+	</select>
+	
+	<!-- 페이징 처리 후 해충 검색 -->
+	<select id="pestPagingSearch" parameterType="com.asnj.entity.Pest" resultType="com.asnj.entity.Pest">
+		select * from tb_pest
+		where (pest_crops like concat('%', #{search}, '%')
+		or pest_name like concat('%', #{search}, '%')
+		or pest_state like concat('%', #{search}, '%')
+		or pest_harm like concat('%', #{search}, '%')
+		or pest_solution like concat('%', #{search}, '%'))
+		order by pest_pk desc LIMIT  #{startnum}, #{endnum}
 	</select>
 </mapper>

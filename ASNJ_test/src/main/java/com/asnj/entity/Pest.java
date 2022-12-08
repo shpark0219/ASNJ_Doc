@@ -20,7 +20,29 @@ public class Pest {
 	private String pest_imginfo4;
 	private String pest_imgpath5;
 	private String pest_imginfo5;
+	private int startnum;
+    private int endnum;
+    private String search;
 	
+	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public int getStartnum() {
+		return startnum;
+	}
+	public void setStartnum(int startnum) {
+		this.startnum = startnum;
+	}
+	public int getEndnum() {
+		return endnum;
+	}
+	public void setEndnum(int endnum) {
+		this.endnum = endnum;
+	}
 	public int getPest_pk() {
 		return pest_pk;
 	}
