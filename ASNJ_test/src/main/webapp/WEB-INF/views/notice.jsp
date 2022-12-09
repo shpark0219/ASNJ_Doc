@@ -313,18 +313,22 @@
 								</c:forEach>
 								</tbody>
 							</table>
-							<!-- 페이징 시작 -->
+							<!-- 페이징 시작 --> <c:set value="${nownum}" var="num" />
 							<nav class=" d-flex justify-content-center"
 								aria-label="Page navigation example">
 								<ul class="pagination">
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									<li class="page-item"><a class="page-link"
+										href="Notice.do?num=${num-1}" aria-label="Previous"> <span
+											aria-hidden="true">&laquo;</span>
 									</a></li>
-									<c:forEach begin="1" end="${pageNum}" var="num">
-									<li class="page-item"><a class="page-link <c:if test="${nownum eq number}">active</c:if>" href="Notice.do?num=${num}">${num}</a></li>
+									<c:forEach begin="1" end="${pageNum}" var="number">
+										<li class="page-item"><a
+											class="page-link <c:if test="${nownum == number}">active</c:if>"
+											href="Notice.do?num=${number}">${number}</a></li>
 									</c:forEach>
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									<li class="page-item"><a class="page-link"
+										href="Notice.do?num=${num+1}" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
 									</a></li>
 								</ul>
 							</nav>

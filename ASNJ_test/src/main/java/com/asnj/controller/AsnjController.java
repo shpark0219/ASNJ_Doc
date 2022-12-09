@@ -108,7 +108,7 @@ public class AsnjController {
 	
 	// 게시물 목록 + 페이징 추가
 	@GetMapping("/Notice.do")
-	public String getListPage(Model model, String key, @RequestParam("num") int num) throws Exception {
+	public String getListPage(Model model, @RequestParam("num") int num) throws Exception {
 	 
 	 // 게시물 총 갯수
 	 int count = mapper.questionCount();
@@ -136,6 +136,7 @@ public class AsnjController {
 	 model.addAttribute("questionlist", list);   
 	 model.addAttribute("answerlist", answerlist); 
 	 model.addAttribute("pageNum", pageNum);
+	 model.addAttribute("nownum", num);
 	 
 	 return "notice";
 	}
@@ -199,7 +200,7 @@ public class AsnjController {
 	// 병해충 분석 결과로 이동
 	@GetMapping("/Predictionresult.do")
 	public String Predictionresult(Model model, String result) {
-		result = "꽃노랑총채벌레";
+		result = "탄저병";
 		if(result.equals("정상")) {
 			model.addAttribute("msg", "분석 성공! 결과는 "+result+"입니다.\\n다른 병해충 사진을 업로드 해주세요!");
 			model.addAttribute("url", "Prediction.do");
