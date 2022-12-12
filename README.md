@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=transparent&height=100&text=나의%20역할%20:%20Java,%20Python,%20DB&fontColor=0055ff&fontSize=50)
+![header](https://capsule-render.vercel.app/api?type=transparent&height=100&text=나의%20역할%20:%20HTML/CSS/JS,%20Java,%20Spring,%20JSP,%20JQuery&fontColor=0055ff&fontSize=35)
 ### 1. Java와 Python를 사용해 웹 서비스의 백엔드 기능 구현
   - 로그인, 로그아웃, 회원가입 등 기본 기능
   - 문의사항 및 답변 등록, 수정, 삭제
