@@ -1,13 +1,14 @@
-![header](https://capsule-render.vercel.app/api?type=transparent&height=100&text=나의%20역할%20:%20HTML/CSS/JS,%20Java,%20Spring,%20JSP,%20JQuery&fontColor=0055ff&fontSize=35)
-### 1. Java와 Python를 사용해 웹 서비스의 백엔드 기능 구현
-  - 로그인, 로그아웃, 회원가입 등 기본 기능
-  - 문의사항 및 답변 등록, 수정, 삭제
-  - 병해충 분석, 정보 및 상세정보 페이지
-  - 검색, 검색 결과 페이지, 페이징 기능
-  - Spring에서 Flask 서버로 이미지를 전송하여 저장
-  - Flask에서 Spring으로 분석 결과를 보낸 뒤, Spring에서 값에 따라 처리
-### 2. DB 설계 및 구축, 데이터 수집 및 import
-  - AI-Hub, 농사로 등 사이트에서 병해충 관련 데이터 수집
+![header](https://capsule-render.vercel.app/api?type=transparent&height=100&text=나의%20역할%20:%20HTML/CSS/JS,%20Java,%20Spring,%20JSP,%20JQuery&fontColor=8A0A8A&fontSize=35)
+### 1. JSP와 Spring, HTML/CSS/JS등을 사용해 웹 서비스의 UI/UX 설계 및 프론트엔드 기능 구현
+  - 홈페이지 템플렛 전체 수정
+  - SpringFramework를 이용한 Client와 Server Controller 연결
+  - 병해충 분석, 정보 및 상세정보 페이지 설계
+  - 검색, 검색 결과 페이지 설계
+  - 관리자 페이지 설계
+  - 세부 css 조정
+  - Bootstrap을 이용한 반응형 웹사이트 구현
+### 2. 데이터 수집 및 전처리
+  - AI-Hub, 농사로,국가농작물 병해충 관리 등 사이트에서 병해충 관련 데이터 수집
   - 웹 서비스에 제공할 수 있게 전처리
 
 <!-- - 로그인, 검색, 문의사항, 농업일지 등 DB에서 원하는 정보를 select한 후, 페이지에 보여주는 기능
@@ -21,12 +22,14 @@
 - 학습한 기술
   - GitHub를 활용해 버전 관리 및 협업하는 방법
   - JSP 파일에서 Servlet 파일로 데이터를 보내고 원하는 방식으로 데이터를 처리한 후, 다시 JSP 파일로 값을 보내는 법
-  - 데이터베이스 설계 및 구축을 통해 SQL문과 entity 관계에 대한 지식 습득
+  - JS,JQuery 등 스크립트를 사용한 기능 구현 방법 학습
+  - Bootstrap과 CSS 등을 이용해 좀 더 Client 친화적인 웹서비스를 할 수 있는 사이트 구현
   - 많은 회의로 커뮤니케이션 기술 상승
   
   
 - 어려웠던 부분, 오류 상황
   - 하루마다 프로젝트 전 후로 회의를 통해 팀원들과의 커뮤니케이션이 중요하다는 점
+  - 기존 템플렛의 전체 폰트를 원하는 폰트로 수정하려 Bootstrap.css 파일과 Style.css 파일을 변경했으나 일부 기능에서 오류 발생 -> 결국 수정하지 못하고 기존 파일로 회귀함 -> css 파일을 병경할 때는 좀 더 신중을 기해야 한다는 걸 배움
   
 ---
 
